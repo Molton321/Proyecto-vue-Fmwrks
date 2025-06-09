@@ -1,10 +1,53 @@
-<script setup>
+<script setup lang="ts">
 import FloatingConfigurator from '@/components/FloatingConfigurator.vue';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
+import { useAuthStore } from '@/store/Auth';
+import type { User } from '@/models/User';
+import router from '@/router';
 
 const email = ref('');
 const password = ref('');
 const checked = ref(false);
+
+const authStore = useAuthStore();
+const user = ref<User>({ email: '', password: '' });
+
+function decodeJwt(token: string) {
+  try {
+    const payload = token.split('.')[1];
+    const decoded = atob(payload.replace(/-/g, '+').replace(/_/g, '/'));
+    return JSON.parse(decodeURIComponent(escape(decoded)));
+  } catch (e) {
+    return null;
+  }
+}
+
+// Maneja la respuesta de Google
+function handleCredentialResponse(response: any) {
+  const decoded = decodeJwt(response.credential);
+  if (decoded) {
+    localStorage.setItem('user', JSON.stringify(decoded));
+    router.push('/');
+  } else {
+    alert('Error al procesar la respuesta de Google');
+  }
+}
+
+onMounted(() => {
+  // @ts-ignore
+  if (window.google && window.google.accounts && window.google.accounts.id) {
+    // @ts-ignore
+    window.google.accounts.id.initialize({
+      client_id: '295456302918-vv5kvp39q82c1joq8m6l04fjqetrpnt9.apps.googleusercontent.com',
+      callback: handleCredentialResponse,
+    });
+    // @ts-ignore
+    window.google.accounts.id.renderButton(
+      document.getElementById('google-button'),
+      { theme: 'outline', size: 'large' }
+    );
+  }
+});
 </script>
 
 <template>
@@ -50,6 +93,12 @@ const checked = ref(false);
                             <span class="font-medium no-underline ml-2 text-right cursor-pointer text-primary">Forgot password?</span>
                         </div>
                         <Button label="Sign In" class="w-full" as="router-link" to="/"></Button>
+                        <div class="flex justify-center my-4">
+                            <span class="font-medium no-underline cursor-pointer text-center">O usa</span>
+                        </div>
+                        <div class="mt-6 flex justify-center">
+                            <div id="google-button"></div>
+                        </div>
                     </div>
                 </div>
             </div>

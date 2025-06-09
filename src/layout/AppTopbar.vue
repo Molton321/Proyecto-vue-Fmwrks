@@ -102,7 +102,7 @@ onUnmounted(() => {
             </div>
 
             <div v-else>
-                <router-link to="/login2">Iniciar sesión</router-link>
+                <router-link to="/auth/login">Iniciar sesión</router-link>
             </div>
 
         </div>

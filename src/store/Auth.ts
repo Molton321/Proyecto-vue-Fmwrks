@@ -2,6 +2,7 @@ import AuthService from '@/service/AuthService';
 import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
 import type { User } from '../models/User';
+import router from '@/router';
 
 export const useAuthStore = defineStore('auth', () => {
     const user = ref<User | null>(AuthService.getCurrentUser()); // <-- Reactivo
@@ -19,7 +20,10 @@ export const useAuthStore = defineStore('auth', () => {
     };
 
     const logout = () => {
-        console.log("cerrando")
+        // Usa router-link para navegar programáticamente
+        // Asegúrate de importar el router si no está importado
+        // import router from '@/router';
+        router.push('/auth/login');
         AuthService.logout();
         user.value = null;
 
