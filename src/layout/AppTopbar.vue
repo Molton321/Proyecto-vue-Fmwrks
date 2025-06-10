@@ -15,18 +15,18 @@ let user = computed(() => authStore.user);
 import { io } from 'socket.io-client';
 import { onMounted, onUnmounted, ref } from 'vue';
 
-const socket = io('http://localhost:5000'); // Cambia la URL por la de tu servidor
+// const socket = io('http://localhost:5000'); // Cambia la URL por la de tu servidor
 const message = ref('');
 
 onMounted(() => {
-    socket.on('new_notification', (data) => {
+    /* socket.on('new_notification', (data) => {
         message.value = data;
         console.log("Llegando notificaciones " + JSON.stringify(data));
-    });
+    });*/
 });
 
 onUnmounted(() => {
-    socket.disconnect();
+    // socket.disconnect();
 });
 
 </script>
@@ -95,20 +95,24 @@ onUnmounted(() => {
                     <div class="layout-topbar-menu-content">
 
                         <div class="round-full w-10 h-10 flex items-center justify-center">
-                            <img src="https://thumbs.dreamstime.com/b/vector-de-perfil-avatar-predeterminado-foto-usuario-medios-sociales-icono-183042379.jpg" alt="">
+                            <img :src="user?.picture" alt="Foto">
                         </div>
 
                         <span class='flex items-center justify-center' v-if="isAuthenticated">Welcome {{ user?.name }}!</span>
 
                         
 
-                        <button  @click="authStore.logout">Cerrar sesión</button>
+                        <button @click="authStore.logout" class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark transition-colors">
+                            Cerrar sesión
+                        </button>
                     </div>
                 </div>
             </div>
 
             <div v-else>
-                <router-link to="/auth/login">Iniciar sesión</router-link>
+                <router-link to="/auth/login"><div class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark transition-colors">
+                            Iniciar sesión
+                </div></router-link>
             </div>
 
         </div>

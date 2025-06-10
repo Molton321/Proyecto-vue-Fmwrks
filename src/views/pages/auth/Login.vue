@@ -25,6 +25,9 @@ function decodeJwt(token: string) {
 // Maneja la respuesta de Google
 function handleCredentialResponse(response: any) {
   const decoded = decodeJwt(response.credential);
+  if (decoded && response.credential) {
+    decoded.token = response.credential;
+  }
   if (decoded) {
     localStorage.setItem('user', JSON.stringify(decoded));
     router.push('/');
