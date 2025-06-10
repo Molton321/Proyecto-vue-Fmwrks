@@ -102,7 +102,7 @@ onUnmounted(() => {
 
                         
 
-                        <button  @click="authStore.logout">Cerrar sesión</button>
+                        <button  @click="authStore.logout">Logout</button>
                     </div>
                 </div>
             </div>
