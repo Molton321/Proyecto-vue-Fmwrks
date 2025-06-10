@@ -102,13 +102,13 @@ onUnmounted(() => {
 
                         
 
-                        <button  @click="authStore.logout">Cerrar sesión</button>
+                        <button  @click="authStore.logout">Logout</button>
                     </div>
                 </div>
             </div>
 
             <div v-else>
-                <router-link to="/login2">Iniciar sesión</router-link>
+                <router-link to="/login2" class="bg-primary">Signin</router-link>
             </div>
 
         </div>
