@@ -1,7 +1,7 @@
 import axios from 'axios';
 import type { Role } from '../../models/Role';
 
-const API_URL = import.meta.env.VITE_API_URL + "/role";
+const API_URL = import.meta.env.VITE_API_URL + "/roles";
 
 class RoleService {
     async getAllRoles() {

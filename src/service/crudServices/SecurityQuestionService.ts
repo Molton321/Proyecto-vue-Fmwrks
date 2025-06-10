@@ -1,7 +1,7 @@
 import axios from 'axios';
 import type { SecurityQuestion } from '../../models/securityQuestion';
 
-const API_URL = import.meta.env.VITE_API_URL + "/security-question";
+const API_URL = import.meta.env.VITE_API_URL + "/security-questions";
 
 class SecurityQuestionService {
     async getAllSecurityQuestions() {

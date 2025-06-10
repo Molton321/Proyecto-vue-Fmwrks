@@ -1,7 +1,7 @@
 import axios from 'axios';
 import type { Password } from '../../models/Password';
 
-const API_URL = import.meta.env.VITE_API_URL + "/password";
+const API_URL = import.meta.env.VITE_API_URL + "/passwords";
 
 class PasswordService {
     async getAllPasswords() {

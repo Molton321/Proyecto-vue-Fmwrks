@@ -1,7 +1,7 @@
 import axios from 'axios';
 import type { Permission } from '../../models/Permission';
 
-const API_URL = import.meta.env.VITE_API_URL + "/Permission";
+const API_URL = import.meta.env.VITE_API_URL + "/permissions";
 
 class PermissionService {
     async getAllPermissions() {

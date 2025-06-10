@@ -1,7 +1,7 @@
 import axios from 'axios';
 import type { Device } from '../../models/Device';
 
-const API_URL = import.meta.env.VITE_API_URL + "/device";
+const API_URL = import.meta.env.VITE_API_URL + "/devices";
 
 class DeviceService {
     async getAllDevices() {

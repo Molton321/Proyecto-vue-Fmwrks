@@ -1,7 +1,7 @@
 import axios from 'axios';
 import type { Profile } from '../../models/Profile';
 
-const API_URL = import.meta.env.VITE_API_URL + "/Profile";
+const API_URL = import.meta.env.VITE_API_URL + "/profiles";
 
 class ProfileService {
     async getAllProfiles() {

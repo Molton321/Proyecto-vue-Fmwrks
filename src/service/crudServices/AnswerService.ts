@@ -1,7 +1,7 @@
 import axios from 'axios';
 import type { Answer } from '../../models/Answer';
 
-const API_URL = import.meta.env.VITE_API_URL + "/answer";
+const API_URL = import.meta.env.VITE_API_URL + "/answers";
 
 class AnswerService {
     async getAllAnswers() {
