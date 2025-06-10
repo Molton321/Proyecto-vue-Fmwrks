@@ -38,7 +38,7 @@ onMounted(() => {
   if (window.google && window.google.accounts && window.google.accounts.id) {
     // @ts-ignore
     window.google.accounts.id.initialize({
-      client_id: '295456302918-vv5kvp39q82c1joq8m6l04fjqetrpnt9.apps.googleusercontent.com',
+      client_id: import.meta.env.VITE_CLIENT_ID,
       callback: handleCredentialResponse,
     });
     // @ts-ignore
