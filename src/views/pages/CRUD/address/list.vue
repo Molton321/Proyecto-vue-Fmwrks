@@ -30,11 +30,11 @@ const defaultAddress: Address = {
 
 
 const goToCreate = () => {
-  router.push('/Address/create');
+  router.push('/address/create');
 };
 
 const goToEdit = (id: number) => {
-  router.push(`/Address/update/${id}`);
+  router.push(`/address/update/${id}`);
 };
 
 const labelMap = (key: string) =>

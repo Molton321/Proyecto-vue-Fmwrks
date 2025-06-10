@@ -28,11 +28,11 @@ const defaultProfile: Profile = {
 
 
 const goToCreate = () => {
-  router.push('/Profile/create');
+  router.push('/profile/create');
 };
 
 const goToEdit = (id: number) => {
-  router.push(`/Profile/update/${id}`);
+  router.push(`/profile/update/${id}`);
 };
 
 const labelMap = (key: string) =>
