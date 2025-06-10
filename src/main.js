@@ -11,10 +11,18 @@ import '@/assets/styles.scss';
 import '@/assets/tailwind.css';
 import axios from 'axios';
 import { createPinia } from 'pinia';
+import { configure } from 'vee-validate';
 
 const app = createApp(App);
 
 const pinia = createPinia();
+
+configure({
+  validateOnMount: false,
+  validateOnBlur: true,
+  validateOnChange: true,
+  validateOnInput: false,
+});
 
 app.use(pinia); // 👈 Registrar Pinia antes de usarlo
 app.use(router);

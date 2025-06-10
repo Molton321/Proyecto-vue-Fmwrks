@@ -14,13 +14,11 @@ const router = createRouter({
                     name: 'dashboard',
                     component: () => import('@/views/Dashboard.vue')
                 },
+
                 {
-                    path: '/users',
-                    name: 'users',
-                    component: () => import('@/views/pages/users/UserListView.vue'),
-                    meta: {
-                        requiresAuth: true // Esta ruta requiere autenticación
-                    }
+                    path: '/address',
+                    name: 'address',
+                    component: () => import('@/views/pages/CRUD/address/list.vue')
                 },
                 {
                     path: '/users/create',

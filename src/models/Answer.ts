@@ -1,6 +1,6 @@
 export interface Answer {
-    id?: number;
-    content?: string;
-    user_id?: number;
-    question_id?: number;
+  id?: number;
+  content?: string;
+  user_id?: number;
+  question_id?: number;
 }
