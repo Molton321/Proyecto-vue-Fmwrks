@@ -11,19 +11,19 @@ const model = ref([
     {
         label: 'UI Components',
         items: [
-            { label: 'Address', icon: 'pi pi-fw pi-id-card', to: '/uikit/formlayout' },
-            { label: 'Answer', icon: 'pi pi-fw pi-check-square', to: '/uikit/input' },
-            { label: 'Device', icon: 'pi pi-fw pi-mobile', to: '/uikit/button', class: 'rotated-icon' },
-            { label: 'Digital Signature', icon: 'pi pi-fw pi-table', to: '/uikit/table' },
-            { label: 'Password', icon: 'pi pi-fw pi-list', to: '/uikit/list' },
-            { label: 'Permission', icon: 'pi pi-fw pi-share-alt', to: '/uikit/tree' },
-            { label: 'Profile', icon: 'pi pi-fw pi-tablet', to: '/uikit/panel' },
-            { label: 'Role', icon: 'pi pi-fw pi-clone', to: '/uikit/overlay' },
-            { label: 'Role permission', icon: 'pi pi-fw pi-image', to: '/uikit/media' },
-            { label: 'Security question', icon: 'pi pi-fw pi-bars', to: '/uikit/menu' },
-            { label: 'Session', icon: 'pi pi-fw pi-comment', to: '/uikit/message' },
-            { label: 'User', icon: 'pi pi-fw pi-file', to: '/uikit/file' },
-            { label: 'User role', icon: 'pi pi-fw pi-chart-bar', to: '/uikit/charts' },
+            { label: 'Address', icon: 'pi pi-fw pi-map-marker', to: '/uikit/formlayout' },
+    { label: 'Answer', icon: 'pi pi-fw pi-question-circle', to: '/uikit/input' },
+    { label: 'Device', icon: 'pi pi-fw pi-mobile', to: '/uikit/button' },
+    { label: 'Digital Signature', icon: 'pi pi-fw pi-pencil', to: '/uikit/table' },
+    { label: 'Password', icon: 'pi pi-fw pi-lock', to: '/uikit/list' },
+    { label: 'Permission', icon: 'pi pi-fw pi-key', to: '/uikit/tree' },
+    { label: 'Profile', icon: 'pi pi-fw pi-user', to: '/uikit/panel' },
+    { label: 'Role', icon: 'pi pi-fw pi-users', to: '/uikit/overlay' },
+    { label: 'Role permission', icon: 'pi pi-fw pi-shield', to: '/uikit/media' },
+    { label: 'Security question', icon: 'pi pi-fw pi-info-circle', to: '/uikit/menu' },
+    { label: 'Session', icon: 'pi pi-fw pi-clock', to: '/uikit/message' },
+    { label: 'User', icon: 'pi pi-fw pi-user-edit', to: '/uikit/file' },
+    { label: 'User role', icon: 'pi pi-fw pi-user-plus', to: '/uikit/charts' }
         ]
     },
     {
