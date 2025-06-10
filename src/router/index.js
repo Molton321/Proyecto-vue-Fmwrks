@@ -21,22 +21,6 @@ const router = createRouter({
                     component: () => import('@/views/pages/CRUD/address/list.vue')
                 },
                 {
-                    path: '/users/create',
-                    name: 'users create',
-                    component: () => import('@/views/pages/users/UserCreate.vue'),
-                    meta: {
-                        requiresAuth: true // Esta ruta requiere autenticación
-                    }
-                },
-                {
-                    path: '/users/update/:id',
-                    name: 'users update',
-                    component: () => import('@/views/pages/users/UserUpdate.vue'),
-                    meta: {
-                        requiresAuth: true // Esta ruta requiere autenticación
-                    }
-                },
-                {
                     path: '/uikit/formlayout',
                     name: 'formlayout',
                     component: () => import('@/views/uikit/FormLayout.vue'),
