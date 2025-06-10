@@ -20,7 +20,7 @@
                             />
                         </g>
                     </svg>
-                    <h4 class="font-medium text-3xl text-surface-900 dark:text-surface-0">SAKAI</h4>
+                    <h4 class="font-medium text-3xl text-surface-900 dark:text-surface-0">GOLEM</h4>
                 </a>
             </div>
 
@@ -61,3 +61,16 @@
         </div>
     </div>
 </template>
+
+<script>
+export default {
+    methods: {
+        smoothScroll(selector) {
+            const el = document.querySelector(selector);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    }
+}
+</script>
