@@ -27,11 +27,11 @@ const defaultRole: Role = {
 
 
 const goToCreate = () => {
-  router.push('/Role/create');
+  router.push('/role/create');
 };
 
 const goToEdit = (id: number) => {
-  router.push(`/Role/update/${id}`);
+  router.push(`/role/update/${id}`);
 };
 
 const labelMap = (key: string) =>

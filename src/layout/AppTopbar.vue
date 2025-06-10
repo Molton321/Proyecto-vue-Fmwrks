@@ -98,13 +98,16 @@ onUnmounted(() => {
                             <img :src="user?.picture" alt="Foto">
                         </div>
 
-                        <span class='flex items-center justify-center' v-if="isAuthenticated">Welcome {{ user?.name }}!</span>
+                        <span class='flex items-center justify-center mr-2' v-if="isAuthenticated">Welcome {{ user?.name }}!</span>
 
                         
 
-                        <button @click="authStore.logout" class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark transition-colors">
-                            Cerrar sesión
-                        </button>
+                        <button @click="authStore.logout"
+          type="submit"
+          class="font-semibold text-white bg-primary rounded w-28 hover:bg-primary-600 transition"
+        >
+          Logout <span class="pi pi-fw pi-sign-in"></span>
+        </button>
                     </div>
                 </div>
             </div>

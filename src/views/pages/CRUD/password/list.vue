@@ -28,11 +28,11 @@ const defaultPassword: Password = {
 
 
 const goToCreate = () => {
-  router.push('/Password/create');
+  router.push('/password/create');
 };
 
 const goToEdit = (id: number) => {
-  router.push(`/Password/update/${id}`);
+  router.push(`/password/update/${id}`);
 };
 
 const labelMap = (key: string) =>

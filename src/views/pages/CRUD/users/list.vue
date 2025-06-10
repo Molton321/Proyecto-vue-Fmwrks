@@ -27,11 +27,11 @@ const defaultUser: User = {
 
 
 const goToCreate = () => {
-  router.push('/User/create');
+  router.push('/user/create');
 };
 
 const goToEdit = (id: number) => {
-  router.push(`/User/update/${id}`);
+  router.push(`/user/update/${id}`);
 };
 
 const labelMap = (key: string) =>

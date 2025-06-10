@@ -28,11 +28,11 @@ const defaultDevice: Device = {
 
 
 const goToCreate = () => {
-  router.push('/Device/create');
+  router.push('/device/create');
 };
 
 const goToEdit = (id: number) => {
-  router.push(`/Device/update/${id}`);
+  router.push(`/device/update/${id}`);
 };
 
 const labelMap = (key: string) =>

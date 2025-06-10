@@ -31,11 +31,11 @@ const defaultSession: Session = {
 
 
 const goToCreate = () => {
-  router.push('/Session/create');
+  router.push('/session/create');
 };
 
 const goToEdit = (id: number) => {
-  router.push(`/Session/update/${id}`);
+  router.push(`/session/update/${id}`);
 };
 
 const labelMap = (key: string) =>
