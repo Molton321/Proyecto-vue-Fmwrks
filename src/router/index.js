@@ -15,23 +15,256 @@ const router = createRouter({
                     name: 'dashboard',
                     component: () => import('@/views/Dashboard.vue')
                 },
+                
+                
                 {
-                    path: '/users',
-                    name: 'users',
-                    component: () => import('@/views/pages/users/UserListView.vue'),
-                    meta: {
-                        requiresAuth: true // Esta ruta requiere autenticación
-                    }
+                    path: '/address',
+                    name: 'address',
+                    component: () => import('@/views/pages/CRUD/address/list.vue')
                 },
                 {
-                    path: '/users/create',
-                    name: 'users create',
-                    component: () => import('@/views/pages/users/UserCreate.vue')
+                    path: '/address/create',
+                    name: 'address create',
+                    component: () => import('@/views/pages/CRUD/address/create.vue')
                 },
                 {
-                    path: '/users/update/:id',
-                    name: 'users update',
-                    component: () => import('@/views/pages/users/UserUpdate.vue')
+                    path: '/address/update/:id',
+                    name: 'address update',
+                    component: () => import('@/views/pages/CRUD/address/update.vue')
+                },
+                {
+                    path: '/address/view/:id',
+                    name: 'address view',
+                    component: () => import('@/views/pages/CRUD/address/view.vue')
+                },
+                {
+                    path: '/profile',
+                    name: 'profile',
+                    component: () => import('@/views/pages/CRUD/profile/list.vue')
+                },
+                {
+                    path: '/profile/create',
+                    name: 'profile create',
+                    component: () => import('@/views/pages/CRUD/profile/create.vue')
+                },
+                {
+                    path: '/profile/update/:id',
+                    name: 'profile update',
+                    component: () => import('@/views/pages/CRUD/profile/update.vue')
+                },
+                {
+                    path: '/profile/view/:id',
+                    name: 'profile view',
+                    component: () => import('@/views/pages/CRUD/profile/view.vue')
+                },
+                {
+                    path: '/digital-signature',
+                    name: 'digital signature',
+                    component: () => import('@/views/pages/CRUD/digitalSignature/list.vue')
+                },
+                {
+                    path: '/digital-signature/create',
+                    name: 'digital signature create',
+                    component: () => import('@/views/pages/CRUD/digitalSignature/create.vue')
+                },
+                {
+                    path: '/digital-signature/update/:id',
+                    name: 'digital signature update',
+                    component: () => import('@/views/pages/CRUD/digitalSignature/update.vue')
+                },
+                {
+                    path: '/digital-signature/view/:id',
+                    name: 'digital signature view',
+                    component: () => import('@/views/pages/CRUD/digitalSignature/view.vue')
+                },
+
+                {
+                    path: '/answer',
+                    name: 'answer',
+                    component: () => import('@/views/pages/CRUD/answer/list.vue')
+                },
+                {
+                    path: '/answer/create',
+                    name: 'answer create',
+                    component: () => import('@/views/pages/CRUD/answer/create.vue')
+                },
+                {
+                    path: '/answer/update/:id',
+                    name: 'answer update',
+                    component: () => import('@/views/pages/CRUD/answer/update.vue')
+                },
+                {
+                    path: '/answer/view/:id',
+                    name: 'answer view',
+                    component: () => import('@/views/pages/CRUD/answer/view.vue')
+                },
+
+                {
+                    path: '/security-question',
+                    name: 'security question',
+                    component: () => import('@/views/pages/CRUD/securityQuestion/list.vue')
+                },
+                {
+                    path: '/security-question/create',
+                    name: 'security question create',
+                    component: () => import('@/views/pages/CRUD/securityQuestion/create.vue')
+                },
+                {
+                    path: '/security-question/update/:id',
+                    name: 'security question update',
+                    component: () => import('@/views/pages/CRUD/securityQuestion/update.vue')
+                },
+                {
+                    path: '/security-question/view/:id',
+                    name: 'security question view',
+                    component: () => import('@/views/pages/CRUD/securityQuestion/view.vue')
+                },
+
+                {
+                    path: '/device',
+                    name: 'device',
+                    component: () => import('@/views/pages/CRUD/device/list.vue')
+                },
+                {
+                    path: '/device/create',
+                    name: 'device create',
+                    component: () => import('@/views/pages/CRUD/device/create.vue')
+                },
+                {
+                    path: '/device/update/:id',
+                    name: 'device update',
+                    component: () => import('@/views/pages/CRUD/device/update.vue')
+                },
+                {
+                    path: '/device/view/:id',
+                    name: 'device view',
+                    component: () => import('@/views/pages/CRUD/device/view.vue')
+                },
+
+                {
+                    path: '/password',
+                    name: 'password',
+                    component: () => import('@/views/pages/CRUD/password/list.vue')
+                },
+                {
+                    path: '/password/create',
+                    name: 'password create',
+                    component: () => import('@/views/pages/CRUD/password/create.vue')
+                },
+                {
+                    path: '/password/update/:id',
+                    name: 'password update',
+                    component: () => import('@/views/pages/CRUD/password/update.vue')
+                },
+                {
+                    path: '/password/view/:id',
+                    name: 'password view',
+                    component: () => import('@/views/pages/CRUD/password/view.vue')
+                },
+
+                {
+                    path: '/session',
+                    name: 'session',
+                    component: () => import('@/views/pages/CRUD/session/list.vue')
+                },
+                {
+                    path: '/session/create',
+                    name: 'session create',
+                    component: () => import('@/views/pages/CRUD/session/create.vue')
+                },
+                {
+                    path: '/session/update/:id',
+                    name: 'session update',
+                    component: () => import('@/views/pages/CRUD/session/update.vue')
+                },
+                {
+                    path: '/session/view/:id',
+                    name: 'session view',
+                    component: () => import('@/views/pages/CRUD/session/view.vue')
+                },
+
+                {
+                    path: '/role',
+                    name: 'role',
+                    component: () => import('@/views/pages/CRUD/role/list.vue')
+                },
+                {
+                    path: '/role/create',
+                    name: 'role create',
+                    component: () => import('@/views/pages/CRUD/role/create.vue')
+                },
+                {
+                    path: '/role/update/:id',
+                    name: 'role update',
+                    component: () => import('@/views/pages/CRUD/role/update.vue')
+                },
+                {
+                    path: '/role/view/:id',
+                    name: 'role view',
+                    component: () => import('@/views/pages/CRUD/role/view.vue')
+                },
+
+                {
+                    path: '/user-role',
+                    name: 'user role',
+                    component: () => import('@/views/pages/CRUD/userRole/list.vue')
+                },
+                {
+                    path: '/user-role/create',
+                    name: 'user role create',
+                    component: () => import('@/views/pages/CRUD/userRole/create.vue')
+                },
+                {
+                    path: '/user-role/update/:id',
+                    name: 'user role update',
+                    component: () => import('@/views/pages/CRUD/userRole/update.vue')
+                },
+                {
+                    path: '/user-role/view/:id',
+                    name: 'user role view',
+                    component: () => import('@/views/pages/CRUD/userRole/view.vue')
+                },
+
+                {
+                    path: '/permission',
+                    name: 'permission',
+                    component: () => import('@/views/pages/CRUD/permission/list.vue')
+                },
+                {
+                    path: '/permission/create',
+                    name: 'permission create',
+                    component: () => import('@/views/pages/CRUD/permission/create.vue')
+                },
+                {
+                    path: '/permission/update/:id',
+                    name: 'permission update',
+                    component: () => import('@/views/pages/CRUD/permission/update.vue')
+                },
+                {
+                    path: '/permission/view/:id',
+                    name: 'permission view',
+                    component: () => import('@/views/pages/CRUD/permission/view.vue')
+                },
+
+                {
+                    path: '/role-permission',
+                    name: 'role permission',
+                    component: () => import('@/views/pages/CRUD/rolePermission/list.vue')
+                },
+                {
+                    path: '/role-permission/create',
+                    name: 'role permission create',
+                    component: () => import('@/views/pages/CRUD/rolePermission/create.vue')
+                },
+                {
+                    path: '/role-permission/update/:id',
+                    name: 'role permission update',
+                    component: () => import('@/views/pages/CRUD/rolePermission/update.vue')
+                },
+                {
+                    path: '/role-permission/view/:id',
+                    name: 'role permission view',
+                    component: () => import('@/views/pages/CRUD/rolePermission/view.vue')
                 },
                 {
                     path: '/login2',

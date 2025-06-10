@@ -5,25 +5,21 @@ import AppMenuItem from './AppMenuItem.vue';
 
 const model = ref([
     {
-        label: 'Home',
-        items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/' }]
-    },
-    {
-        label: 'UI Components',
+        label: 'Components',
         items: [
-            { label: 'Address', icon: 'pi pi-fw pi-map-marker', to: '/uikit/formlayout' },
-    { label: 'Answer', icon: 'pi pi-fw pi-question-circle', to: '/uikit/input' },
-    { label: 'Device', icon: 'pi pi-fw pi-mobile', to: '/uikit/button' },
-    { label: 'Digital Signature', icon: 'pi pi-fw pi-pencil', to: '/uikit/table' },
-    { label: 'Password', icon: 'pi pi-fw pi-lock', to: '/uikit/list' },
-    { label: 'Permission', icon: 'pi pi-fw pi-key', to: '/uikit/tree' },
-    { label: 'Profile', icon: 'pi pi-fw pi-user', to: '/uikit/panel' },
-    { label: 'Role', icon: 'pi pi-fw pi-users', to: '/uikit/overlay' },
-    { label: 'Role permission', icon: 'pi pi-fw pi-shield', to: '/uikit/media' },
-    { label: 'Security question', icon: 'pi pi-fw pi-info-circle', to: '/uikit/menu' },
-    { label: 'Session', icon: 'pi pi-fw pi-clock', to: '/uikit/message' },
-    { label: 'User', icon: 'pi pi-fw pi-user-edit', to: '/uikit/file' },
-    { label: 'User role', icon: 'pi pi-fw pi-user-plus', to: '/uikit/charts' }
+            { label: 'Address', icon: 'pi pi-fw pi-map-marker', to: '/address' },
+    { label: 'Answer', icon: 'pi pi-fw pi-question-circle', to: '/answer' },
+    { label: 'Device', icon: 'pi pi-fw pi-mobile', to: '/device' },
+    { label: 'Digital Signature', icon: 'pi pi-fw pi-pencil', to: '/digital-signature' },
+    { label: 'Password', icon: 'pi pi-fw pi-lock', to: '/password' },
+    { label: 'Permission', icon: 'pi pi-fw pi-key', to: '/permission' },
+    { label: 'Profile', icon: 'pi pi-fw pi-user', to: '/profile' },
+    { label: 'Role', icon: 'pi pi-fw pi-users', to: '/role' },
+    { label: 'Role permission', icon: 'pi pi-fw pi-shield', to: '/role-permission' },
+    { label: 'Security question', icon: 'pi pi-fw pi-info-circle', to: '/security-question' },
+    { label: 'Session', icon: 'pi pi-fw pi-clock', to: '/session' },
+    { label: 'User', icon: 'pi pi-fw pi-user-edit', to: '/user' },
+    { label: 'User role', icon: 'pi pi-fw pi-user-plus', to: '/user-role' }
         ]
     },
     {
@@ -35,7 +31,7 @@ const model = ref([
                     {
                         label: 'Sing Up',
                         icon: 'pi pi-fw pi-sign-in',
-                        to: '/auth/login'
+                        to: '/login2'
                     }
                 
             

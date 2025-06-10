@@ -60,6 +60,7 @@ declare module 'vue' {
     ToggleSwitch: typeof import('primevue/toggleswitch')['default']
     TopbarWidget: typeof import('./src/components/landing/TopbarWidget.vue')['default']
     TreeSelect: typeof import('primevue/treeselect')['default']
+    UniversalForm: typeof import('./src/components/form/UniversalForm.vue')['default']
     UserForm: typeof import('./src/components/users/UserForm.vue')['default']
   }
   export interface ComponentCustomProperties {

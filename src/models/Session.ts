@@ -1,6 +1,6 @@
 import { DateTime } from "luxon";
 
-export interface Sesion {
+export interface Session {
     id?: number;
     token?: string;
     expiration?: DateTime;
