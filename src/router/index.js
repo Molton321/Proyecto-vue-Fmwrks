@@ -165,7 +165,15 @@ const router = createRouter({
                 },
 
                 {
-                    path: '/password/create',
+                    path: '/user/:id/passwords',
+                    name: 'password list',
+                    component: () => import('@/views/pages/CRUD/password/list.vue'),
+                    meta: {
+                        requiresAuth: true // Esta ruta requiere autenticación
+                    }
+                },
+                {
+                    path: '/user/:id/passwords/create',
                     name: 'password create',
                     component: () => import('@/views/pages/CRUD/password/create.vue'),
                     meta: {
@@ -173,7 +181,7 @@ const router = createRouter({
                     }
                 },
                 {
-                    path: '/password/update/:id',
+                    path: '/user/:id/passwords/update/:id',
                     name: 'password update',
                     component: () => import('@/views/pages/CRUD/password/update.vue'),
                     meta: {
@@ -181,7 +189,7 @@ const router = createRouter({
                     }
                 },
                 {
-                    path: '/password/view/:id',
+                    path: '/user/:id/passwords/view/:id',
                     name: 'password view',
                     component: () => import('@/views/pages/CRUD/password/view.vue'),
                     meta: {
@@ -251,14 +259,6 @@ const router = createRouter({
                     path: '/user-role/create/:id',
                     name: 'user role create',
                     component: () => import('@/views/pages/CRUD/userRole/create.vue'),
-                    meta: {
-                        requiresAuth: true // Esta ruta requiere autenticación
-                    }
-                },
-                {
-                    path: '/user-role/update/:id',
-                    name: 'user role update',
-                    component: () => import('@/views/pages/CRUD/userRole/update.vue'),
                     meta: {
                         requiresAuth: true // Esta ruta requiere autenticación
                     }

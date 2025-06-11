@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import { useForm, Field, ErrorMessage } from 'vee-validate';
 import { z } from 'zod';
 import { toTypedSchema } from '@vee-validate/zod';
@@ -14,6 +15,8 @@ const props = defineProps({
     default: false
   }
 });
+
+const isSubmitting = ref(false);
 
 const schema = toTypedSchema(
   z.object({
@@ -34,7 +37,9 @@ const { handleSubmit } = useForm({
 });
 
 const onSubmit = handleSubmit((values) => {
+  isSubmitting.value = true;
   emit('submit', values);
+  isSubmitting.value = false;
 });
 </script>
 
@@ -65,6 +70,7 @@ const onSubmit = handleSubmit((values) => {
     <button
       v-if="!props.readOnly"
       type="submit"
+      :disabled="isSubmitting"
       class="w-full py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
     >
       Guardar Usuario

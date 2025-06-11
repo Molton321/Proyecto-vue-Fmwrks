@@ -21,6 +21,8 @@ onMounted(async () => {
   }));
 });
 
+const isSubmitting = ref(false);
+
 const schema = toTypedSchema(
   z.object({
     user_id: z.number({ invalid_type_error: 'User is required' }),
@@ -33,7 +35,9 @@ const { handleSubmit } = useForm({
 });
 
 const onSubmit = handleSubmit((values) => {
+isSubmitting.value = true;
   emit('submit', { ...values, role_id: props.roleId });
+  isSubmitting.value = false;
 });
 </script>
 
@@ -49,7 +53,7 @@ const onSubmit = handleSubmit((values) => {
       </Field>
       <ErrorMessage name="user_id" class="text-red-500 text-sm" />
     </div>
-    <button type="submit" class="w-full py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+    <button type="submit" :disabled="isSubmitting" class="w-full py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
       Agregar Usuario al Rol
     </button>
   </form>

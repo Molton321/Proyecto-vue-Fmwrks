@@ -30,8 +30,8 @@ const goToCreate = () => {
 };
 
 const goTo = (id: number, where: string) => {
-  console.log(`/user/${where}/${id}`);
-  router.push(`/user/${where}/${id}`);
+  console.log(`/user/${id}/${where}`);
+  router.push(`/user/${id}/${where}`);
 };
 
 const deleteUser = async (id: number) => {
