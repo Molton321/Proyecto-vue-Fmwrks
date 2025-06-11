@@ -35,6 +35,12 @@ const handleDelete = async () => {
     alert('Error deleting address')
   }
 }
+
+const handleUpdate = async () => {
+  router.push(`/user/${address.value.user_id}/address/update/${address.value.id}`)
+}
+
+
 </script>
 
 <template>
@@ -45,6 +51,13 @@ const handleDelete = async () => {
       class="mt-4 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded"
     >
       Delete Address
+    </button>
+
+    <button
+      @click="handleUpdate"
+      class="mt-4 bg-blue-500 hover:bg-blue-600 ml-4 text-white px-4 py-2 rounded"
+    >
+      Update Address
     </button>
   </div>
 </template>

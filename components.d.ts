@@ -8,7 +8,10 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AddressForm: typeof import('./src/components/form/AddressForm.vue')['default']
+    AlternativeAddressForm: typeof import('./src/components/form/AlternativeAddressForm.vue')['default']
     BestSellingWidget: typeof import('./src/components/dashboard/BestSellingWidget.vue')['default']
+    Button: typeof import('primevue/button')['default']
+    Chart: typeof import('primevue/chart')['default']
     DevicesForm: typeof import('./src/components/form/DevicesForm.vue')['default']
     DoughnutChart: typeof import('./src/components/dashboard/DoughnutChart.vue')['default']
     FeaturesWidget: typeof import('./src/components/landing/FeaturesWidget.vue')['default']
@@ -17,6 +20,7 @@ declare module 'vue' {
     HeroWidget: typeof import('./src/components/landing/HeroWidget.vue')['default']
     HighlightsWidget: typeof import('./src/components/landing/HighlightsWidget.vue')['default']
     LineChart: typeof import('./src/components/dashboard/LineChart.vue')['default']
+    Menu: typeof import('primevue/menu')['default']
     NotificationsWidget: typeof import('./src/components/dashboard/NotificationsWidget.vue')['default']
     PasswordsForm: typeof import('./src/components/form/PasswordsForm.vue')['default']
     PermissionsForm: typeof import('./src/components/form/PermissionsForm.vue')['default']
