@@ -17,15 +17,6 @@ const router = createRouter({
                         requiresAuth: true // Esta ruta requiere autenticación
                     }
                 },
-
-                {
-                    path: '/address',
-                    name: 'address',
-                    component: () => import('@/views/pages/CRUD/address/list.vue'),
-                    meta: {
-                        requiresAuth: true // Esta ruta requiere autenticación
-                    }
-                },
                 {
                     path: '/address/create',
                     name: 'address create',
@@ -46,14 +37,6 @@ const router = createRouter({
                     path: '/address/view/:id',
                     name: 'address view',
                     component: () => import('@/views/pages/CRUD/address/view.vue'),
-                    meta: {
-                        requiresAuth: true // Esta ruta requiere autenticación
-                    }
-                },
-                {
-                    path: '/profile',
-                    name: 'profile',
-                    component: () => import('@/views/pages/CRUD/profile/list.vue'),
                     meta: {
                         requiresAuth: true // Esta ruta requiere autenticación
                     }
@@ -83,14 +66,6 @@ const router = createRouter({
                     }
                 },
                 {
-                    path: '/digital-signature',
-                    name: 'digital signature',
-                    component: () => import('@/views/pages/CRUD/digitalSignature/list.vue'),
-                    meta: {
-                        requiresAuth: true // Esta ruta requiere autenticación
-                    }
-                },
-                {
                     path: '/digital-signature/create',
                     name: 'digital signature create',
                     component: () => import('@/views/pages/CRUD/digitalSignature/create.vue'),
@@ -110,15 +85,6 @@ const router = createRouter({
                     path: '/digital-signature/view/:id',
                     name: 'digital signature view',
                     component: () => import('@/views/pages/CRUD/digitalSignature/view.vue'),
-                    meta: {
-                        requiresAuth: true // Esta ruta requiere autenticación
-                    }
-                },
-
-                {
-                    path: '/answer',
-                    name: 'answer',
-                    component: () => import('@/views/pages/CRUD/answer/list.vue'),
                     meta: {
                         requiresAuth: true // Esta ruta requiere autenticación
                     }
@@ -149,14 +115,6 @@ const router = createRouter({
                 },
 
                 {
-                    path: '/security-question',
-                    name: 'security question',
-                    component: () => import('@/views/pages/CRUD/securityQuestion/list.vue'),
-                    meta: {
-                        requiresAuth: true // Esta ruta requiere autenticación
-                    }
-                },
-                {
                     path: '/security-question/create',
                     name: 'security question create',
                     component: () => import('@/views/pages/CRUD/securityQuestion/create.vue'),
@@ -181,14 +139,6 @@ const router = createRouter({
                     }
                 },
 
-                {
-                    path: '/device',
-                    name: 'device',
-                    component: () => import('@/views/pages/CRUD/device/list.vue'),
-                    meta: {
-                        requiresAuth: true // Esta ruta requiere autenticación
-                    }
-                },
                 {
                     path: '/device/create',
                     name: 'device create',
@@ -215,14 +165,6 @@ const router = createRouter({
                 },
 
                 {
-                    path: '/password',
-                    name: 'password',
-                    component: () => import('@/views/pages/CRUD/password/list.vue'),
-                    meta: {
-                        requiresAuth: true // Esta ruta requiere autenticación
-                    }
-                },
-                {
                     path: '/password/create',
                     name: 'password create',
                     component: () => import('@/views/pages/CRUD/password/create.vue'),
@@ -247,14 +189,6 @@ const router = createRouter({
                     }
                 },
 
-                {
-                    path: '/session',
-                    name: 'session',
-                    component: () => import('@/views/pages/CRUD/session/list.vue'),
-                    meta: {
-                        requiresAuth: true // Esta ruta requiere autenticación
-                    }
-                },
                 {
                     path: '/session/create',
                     name: 'session create',
@@ -314,14 +248,6 @@ const router = createRouter({
                 },
 
                 {
-                    path: '/user-role',
-                    name: 'user role',
-                    component: () => import('@/views/pages/CRUD/userRole/list.vue'),
-                    meta: {
-                        requiresAuth: true // Esta ruta requiere autenticación
-                    }
-                },
-                {
                     path: '/user-role/create',
                     name: 'user role create',
                     component: () => import('@/views/pages/CRUD/userRole/create.vue'),
@@ -341,6 +267,39 @@ const router = createRouter({
                     path: '/user-role/view/:id',
                     name: 'user role view',
                     component: () => import('@/views/pages/CRUD/userRole/view.vue'),
+                    meta: {
+                        requiresAuth: true // Esta ruta requiere autenticación
+                    }
+                },
+
+                {
+                    path: '/user',
+                    name: 'user',
+                    component: () => import('@/views/pages/CRUD/users/list.vue'),
+                    meta: {
+                        requiresAuth: true // Esta ruta requiere autenticación
+                    }
+                },
+                {
+                    path: '/user/create',
+                    name: 'user create',
+                    component: () => import('@/views/pages/CRUD/users/create.vue'),
+                    meta: {
+                        requiresAuth: true // Esta ruta requiere autenticación
+                    }
+                },
+                {
+                    path: '/user/update/:id',
+                    name: 'user update',
+                    component: () => import('@/views/pages/CRUD/users/update.vue'),
+                    meta: {
+                        requiresAuth: true // Esta ruta requiere autenticación
+                    }
+                },
+                {
+                    path: '/user/view/:id',
+                    name: 'user view',
+                    component: () => import('@/views/pages/CRUD/users/view.vue'),
                     meta: {
                         requiresAuth: true // Esta ruta requiere autenticación
                     }
@@ -380,14 +339,6 @@ const router = createRouter({
                 },
 
                 {
-                    path: '/role-permission',
-                    name: 'role permission',
-                    component: () => import('@/views/pages/CRUD/rolePermission/list.vue'),
-                    meta: {
-                        requiresAuth: true // Esta ruta requiere autenticación
-                    }
-                },
-                {
                     path: '/role-permission/create',
                     name: 'role permission create',
                     component: () => import('@/views/pages/CRUD/rolePermission/create.vue'),
@@ -407,14 +358,6 @@ const router = createRouter({
                     path: '/role-permission/view/:id',
                     name: 'role permission view',
                     component: () => import('@/views/pages/CRUD/rolePermission/view.vue'),
-                    meta: {
-                        requiresAuth: true // Esta ruta requiere autenticación
-                    }
-                },
-                {
-                    path: '/login2',
-                    name: 'login2',
-                    component: () => import('@/views/pages/auth/Login2.vue'),
                     meta: {
                         requiresAuth: true // Esta ruta requiere autenticación
                     }
@@ -602,7 +545,10 @@ router.beforeEach((to, from, next) => {
         // Si la ruta requiere autenticación y el usuario no está logueado, redirigir al login
         next({ path: '/auth/login' });
     } else {
-        // Si no requiere autenticación o el usuario está logueado, continuar con la ruta
+        if (to.name === 'login' && authStore.isAuthenticated) {
+            // Si el usuario ya está logueado y trata de acceder a la página de login, redirigir al dashboard
+            next({ path: '/' });
+        }
         next();
     }
 });

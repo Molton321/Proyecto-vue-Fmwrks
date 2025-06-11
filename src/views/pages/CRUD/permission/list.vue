@@ -31,8 +31,19 @@ const goToCreate = () => {
   router.push('/permission/create');
 };
 
-const goToEdit = (id: number) => {
-  router.push(`/permission/update/${id}`);
+const goTo = (id: number, where: string) => {
+  console.log(`/permission/${where}/${id}`);
+  router.push(`/permission/${where}/${id}`);
+};
+
+const deletePermission = async (id: number) => {
+  try {
+    await PermissionsService.deletePermission(id);
+    // Refresh the list after deletion
+    await fetchPermissions();
+  } catch (error) {
+    console.error('Error deleting User:', error);
+  }
 };
 
 const labelMap = (key: string) =>
@@ -75,7 +86,9 @@ onMounted(fetchPermissions);
         {{ Permission[key] }}
       </td>
       <td class="px-4 py-2 space-x-2">
-        <button @click="goToEdit(Permission.id!)" class="text-blue-500 hover:underline">Edit</button>
+        <button @click="goTo(Permission.id!, 'view')" class="text-green-500 hover:underline">View</button>
+        <button @click="goTo(Permission.id!, 'update')" class="text-blue-500 hover:underline">Update</button>
+        <button @click="goTo(Permission.id!, '')" class="text-red-500 hover:underline">Delete</button>
       </td>
     </tr>
   </tbody>

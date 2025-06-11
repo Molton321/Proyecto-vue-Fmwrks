@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, toRaw } from 'vue';
 import { useRouter } from 'vue-router';
 import { useForm, ErrorMessage } from 'vee-validate';
 import type { TypedSchema } from 'vee-validate';
@@ -29,7 +29,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const { handleSubmit, values } = useForm({
   validationSchema: props.validationSchema,
-  initialValues: props.model,
+  initialValues: JSON.parse(JSON.stringify(props.model)),
 });
 
 const router = useRouter();
@@ -37,7 +37,7 @@ const router = useRouter();
 const hiddenKeys = ['id', 'created_at', 'createdAt', 'motorcycle', 'restaurant', 'product', 'customer', 'menu', 'driver', 'photos'];
 
 const visibleFields = computed(() =>
-  Object.entries(props.model).filter(([key]) => !props.hideItems || !hiddenKeys.includes(key))
+  Object.entries(structuredClone(toRaw(values))).filter(([key]) => !props.hideItems || !hiddenKeys.includes(key))
 );
 
 const getInputType = (key: string, value: any): string => {

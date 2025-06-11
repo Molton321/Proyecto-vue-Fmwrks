@@ -1,8 +1,8 @@
 export interface User {
-    id?: number;
+    id?: number; // Auto-incremented ID, not to be sent to the client
     name?: string;
     email?: string;
-    password?: string;
-    picture?: string;
-    token?: string;
+    password?: string; // Just for internal use, not to be sent to the client
+    picture?: string; // Just for internal use, not to be sent to the client
+    token?: string; // Just for internal use, not to be sent to the client
 }

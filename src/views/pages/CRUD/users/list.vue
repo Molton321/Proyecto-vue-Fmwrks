@@ -25,13 +25,23 @@ const defaultUser: User = {
     email: '',
 };
 
-
 const goToCreate = () => {
   router.push('/user/create');
 };
 
-const goToEdit = (id: number) => {
-  router.push(`/user/update/${id}`);
+const goTo = (id: number, where: string) => {
+  console.log(`/user/${where}/${id}`);
+  router.push(`/user/${where}/${id}`);
+};
+
+const deleteUser = async (id: number) => {
+  try {
+    await UsersService.deleteUser(id);
+    // Refresh the list after deletion
+    await fetchUsers();
+  } catch (error) {
+    console.error('Error deleting User:', error);
+  }
 };
 
 const labelMap = (key: string) =>
@@ -49,9 +59,9 @@ onMounted(fetchUsers);
 <template>
   <div class="p-6">
     <div class="flex justify-between items-center mb-4">
-      <h1 class="text-2xl font-semibold text-gray-800 dark:text-white">User Roles</h1>
+      <h1 class="text-2xl font-semibold text-gray-800 dark:text-white">Users</h1>
       <button @click="goToCreate" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
-        Create User Role
+        Create User
       </button>
     </div>
 
@@ -74,7 +84,15 @@ onMounted(fetchUsers);
         {{ User[key] }}
       </td>
       <td class="px-4 py-2 space-x-2">
-        <button @click="goToEdit(User.id!)" class="text-blue-500 hover:underline">Edit</button>
+        <button @click="goTo(User.id!, 'view')" class="text-green-500 hover:underline">View</button>
+        <button @click="goTo(User.id!, 'update')" class="text-blue-500 hover:underline">Update</button>
+        <button @click="goTo(User.id!, 'profile')" class="text-purple-500 hover:underline">Profile</button>
+        <button @click="goTo(User.id!, 'address')" class="text-yellow-600 hover:underline">Address</button>
+        <button @click="goTo(User.id!, 'signature')" class="text-pink-500 hover:underline">Digital Signature</button>
+        <button @click="goTo(User.id!, 'devices')" class="text-indigo-500 hover:underline">Devices</button>
+        <button @click="goTo(User.id!, 'passwords')" class="text-orange-500 hover:underline">Passwords</button>
+        <button @click="goTo(User.id!, 'sessions')" class="text-teal-500 hover:underline">Sessions</button>
+        <button @click="deleteUser(User.id!)" class="text-red-500 hover:underline">Delete</button>
       </td>
     </tr>
   </tbody>

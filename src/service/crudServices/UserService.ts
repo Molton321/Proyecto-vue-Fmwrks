@@ -9,7 +9,7 @@ class UserService {
         return response;
     }
 
-    async getUser(id: number) {
+    async getUser(id: string | number) {
         const response = await axios.get<User>(`${API_URL}/${id}`);
         return response;
     }

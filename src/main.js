@@ -18,10 +18,10 @@ const app = createApp(App);
 const pinia = createPinia();
 
 configure({
-  validateOnMount: false,
-  validateOnBlur: true,
-  validateOnChange: true,
-  validateOnInput: false,
+    validateOnMount: false,
+    validateOnBlur: true,
+    validateOnChange: true,
+    validateOnInput: false
 });
 
 app.use(pinia); // 👈 Registrar Pinia antes de usarlo
@@ -46,16 +46,15 @@ axios.interceptors.request.use(
         const excepciones = ['login', 'public']; // Palabras clave a excluir
 
         // Verificar si la URL de la solicitud contiene alguna de las palabras clave en la lista de excepciones
-        const isExcepcion = excepciones.some(keyword => config.url.includes(keyword));
+        const isExcepcion = excepciones.some((keyword) => config.url.includes(keyword));
 
         if (!isExcepcion) {
             // Obtener el token del almacenamiento local (o de donde lo guardes)
 
             const user = JSON.parse(localStorage.getItem('user'));
-            console.log("agregando token " + user["token"]);
             if (user) {
                 // Si el token existe, agregarlo al encabezado Authorization
-                config.headers['Authorization'] = `Bearer ${user["token"]}`;
+                config.headers['Authorization'] = `Bearer ${user['token']}`;
             }
         }
         return config;
