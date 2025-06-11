@@ -140,7 +140,15 @@ const router = createRouter({
                 },
 
                 {
-                    path: '/device/create',
+                    path: '/user/:id/devices',
+                    name: 'device list',
+                    component: () => import('@/views/pages/CRUD/device/list.vue'),
+                    meta: {
+                        requiresAuth: true // Esta ruta requiere autenticación
+                    }
+                },
+                {
+                    path: '/user/:id/devices/create',
                     name: 'device create',
                     component: () => import('@/views/pages/CRUD/device/create.vue'),
                     meta: {
@@ -148,7 +156,7 @@ const router = createRouter({
                     }
                 },
                 {
-                    path: '/device/update/:id',
+                    path: '/user/:id/devices/update/:id_device',
                     name: 'device update',
                     component: () => import('@/views/pages/CRUD/device/update.vue'),
                     meta: {
