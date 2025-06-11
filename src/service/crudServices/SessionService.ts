@@ -9,7 +9,7 @@ class SessionService {
         return response;
     }
 
-    async getSession(sessionId: string) {
+    async getSession(sessionId: number) {
         const response = await axios.get<Session>(`${API_URL}/${sessionId}`);
         return response;
     }
@@ -24,7 +24,7 @@ class SessionService {
         return response;
     }
 
-    async updateSession(sessionId: string, session: Partial<Session>) {
+    async updateSession(sessionId: number, session: Partial<Session>) {
         const response = await axios.put<Session>(`${API_URL}/${sessionId}`, session);
         return response;
     }

@@ -198,7 +198,7 @@ const router = createRouter({
                 },
 
                 {
-                    path: '/session/create',
+                    path: '/user/:id/sessions',
                     name: 'session create',
                     component: () => import('@/views/pages/CRUD/session/create.vue'),
                     meta: {
@@ -206,7 +206,7 @@ const router = createRouter({
                     }
                 },
                 {
-                    path: '/session/update/:id',
+                    path: '/user/:id/session/update/:id',
                     name: 'session update',
                     component: () => import('@/views/pages/CRUD/session/update.vue'),
                     meta: {
