@@ -254,7 +254,6 @@ const router = createRouter({
                         requiresAuth: true // Esta ruta requiere autenticación
                     }
                 },
-
                 {
                     path: '/user-role/create/:id',
                     name: 'user role create',
