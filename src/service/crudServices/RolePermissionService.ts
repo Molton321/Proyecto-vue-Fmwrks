@@ -26,10 +26,19 @@ class RolePermissionService {
         return response;
     }
 
-    async createRolePermission(roleId: number, permissionId: number, data?: any) { // Modified signature and URL
-        const response = await axios.post<rolePermission>(`${API_URL}/role/${roleId}/permission/${permissionId}`, data);
-        return response;
+    async createRolePermission(roleId: number, permissionId: number) {
+  const response = await axios.post<rolePermission>(
+    `${API_URL}/role/${roleId}/permission/${permissionId}`,
+    {}, // ✅ Body obligatorio aunque sea vacío
+    {
+      headers: {
+        'Content-Type': 'application/json', // ✅ Esto previene el 415
+      },
     }
+  );
+  return response;
+}
+
 
     async updateRolePermission(id: string, data: Partial<rolePermission>) { // Changed id to string, data to Partial
         const response = await axios.put<rolePermission>(`${API_URL}/${id}`, data);

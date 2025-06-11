@@ -363,7 +363,7 @@ const router = createRouter({
                 },
 
                 {
-                    path: '/role-permission/create',
+                    path: '/role-permission/create/:id',
                     name: 'role permission create',
                     component: () => import('@/views/pages/CRUD/rolePermission/create.vue'),
                     meta: {
