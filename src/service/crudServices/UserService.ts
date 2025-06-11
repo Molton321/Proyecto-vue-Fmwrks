@@ -9,23 +9,24 @@ class UserService {
         return response;
     }
 
-    async getUser(id: string | number) {
-        const response = await axios.get<User>(`${API_URL}/${id}`);
+    async getUser(userId: number) {
+        const response = await axios.get<User>(`${API_URL}/${userId}`);
         return response;
     }
 
-    async createUser(user: User) {
+    async createUser(user: Omit<User, 'id'>) {
         const response = await axios.post<User>(API_URL, user);
         return response;
     }
 
-    async updateUser(id: number, user: User) {
-        const response = await axios.put<User>(`${API_URL}/${id}`, user);
+    async updateUser(userId: number, user: Partial<User>) {
+        const response = await axios.put<User>(`${API_URL}/${userId}`, user);
         return response;
     }
 
-    async deleteUser(id: number) {
-        await axios.delete(`${API_URL}/${id}`);
+    async deleteUser(userId: number) {
+        const response = await axios.delete(`${API_URL}/${userId}`);
+        return response;
     }
 }
 

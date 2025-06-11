@@ -9,23 +9,29 @@ class DeviceService {
         return response;
     }
 
-    async getDevice(id: number) {
-        const response = await axios.get<Device>(`${API_URL}/${id}`);
+    async getDevice(deviceId: number) {
+        const response = await axios.get<Device>(`${API_URL}/${deviceId}`);
         return response;
     }
 
-    async createDevice(Device: Device) {
-        const response = await axios.post<Device>(API_URL, Device);
+    async getDevicesByUserId(userId: number) {
+        const response = await axios.get<Device[]>(`${API_URL}/user/${userId}`);
         return response;
     }
 
-    async updateDevice(id: number, Device: Device) {
-        const response = await axios.put<Device>(`${API_URL}/${id}`, Device);
+    async createDevice(userId: number, device: Omit<Device, 'id'>) {
+        const response = await axios.post<Device>(`${API_URL}/user/${userId}`, device);
         return response;
     }
 
-    async deleteDevice(id: number) {
-        await axios.delete(`${API_URL}/${id}`);
+    async updateDevice(deviceId: number, device: Partial<Device>) {
+        const response = await axios.put<Device>(`${API_URL}/${deviceId}`, device);
+        return response;
+    }
+
+    async deleteDevice(deviceId: number) {
+        const response = await axios.delete(`${API_URL}/${deviceId}`);
+        return response;
     }
 }
 

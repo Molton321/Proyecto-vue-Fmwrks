@@ -9,23 +9,34 @@ class PasswordService {
         return response;
     }
 
-    async getPassword(id: number) {
-        const response = await axios.get<Password>(`${API_URL}/${id}`);
+    async getPassword(passwordId: number) {
+        const response = await axios.get<Password>(`${API_URL}/${passwordId}`);
         return response;
     }
 
-    async createPassword(Password: Password) {
-        const response = await axios.post<Password>(API_URL, Password);
+    async getPasswordsByUserId(userId: number) {
+        const response = await axios.get<Password[]>(`${API_URL}/user/${userId}`);
         return response;
     }
 
-    async updatePassword(id: number, Password: Password) {
-        const response = await axios.put<Password>(`${API_URL}/${id}`, Password);
+    async getCurrentPasswordByUserId(userId: number) {
+        const response = await axios.get<Password>(`${API_URL}/user/${userId}/current`);
         return response;
     }
 
-    async deletePassword(id: number) {
-        await axios.delete(`${API_URL}/${id}`);
+    async createPassword(userId: number, password: Omit<Password, 'id' | 'userId'>) { // Assuming password data doesn't include id or userId in payload
+        const response = await axios.post<Password>(`${API_URL}/user/${userId}`, password);
+        return response;
+    }
+
+    async updatePassword(passwordId: number, password: Partial<Password>) {
+        const response = await axios.put<Password>(`${API_URL}/${passwordId}`, password);
+        return response;
+    }
+
+    async deletePassword(passwordId: number) {
+        const response = await axios.delete(`${API_URL}/${passwordId}`);
+        return response;
     }
 }
 

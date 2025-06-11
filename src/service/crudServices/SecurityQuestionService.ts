@@ -9,23 +9,24 @@ class SecurityQuestionService {
         return response;
     }
 
-    async getSecurityQuestion(id: number) {
-        const response = await axios.get<SecurityQuestion>(`${API_URL}/${id}`);
+    async getSecurityQuestion(questionId: number) {
+        const response = await axios.get<SecurityQuestion>(`${API_URL}/${questionId}`);
         return response;
     }
 
-    async createSecurityQuestion(SecurityQuestion: SecurityQuestion) {
-        const response = await axios.post<SecurityQuestion>(API_URL, SecurityQuestion);
+    async createSecurityQuestion(question: Omit<SecurityQuestion, 'id'>) {
+        const response = await axios.post<SecurityQuestion>(API_URL, question);
         return response;
     }
 
-    async updateSecurityQuestion(id: number, SecurityQuestion: SecurityQuestion) {
-        const response = await axios.put<SecurityQuestion>(`${API_URL}/${id}`, SecurityQuestion);
+    async updateSecurityQuestion(questionId: number, question: Partial<SecurityQuestion>) {
+        const response = await axios.put<SecurityQuestion>(`${API_URL}/${questionId}`, question);
         return response;
     }
 
-    async deleteSecurityQuestion(id: number) {
-        await axios.delete(`${API_URL}/${id}`);
+    async deleteSecurityQuestion(questionId: number) {
+        const response = await axios.delete(`${API_URL}/${questionId}`);
+        return response;
     }
 }
 

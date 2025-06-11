@@ -9,23 +9,52 @@ class ProfileService {
         return response;
     }
 
-    async getProfile(id: number) {
-        const response = await axios.get<Profile>(`${API_URL}/${id}`);
+    async getProfile(profileId: number) {
+        const response = await axios.get<Profile>(`${API_URL}/${profileId}`);
         return response;
     }
 
-    async createProfile(Profile: Profile) {
-        const response = await axios.post<Profile>(API_URL, Profile);
+    async getProfileByUserId(userId: number) {
+        const response = await axios.get<Profile>(`${API_URL}/user/${userId}`);
         return response;
     }
 
-    async updateProfile(id: number, Profile: Profile) {
-        const response = await axios.put<Profile>(`${API_URL}/${id}`, Profile);
+    async createProfile(userId: number, data: Omit<Profile, 'id' | 'userId' | 'photo'>, photo?: File) {
+        const formData = new FormData();
+        Object.keys(data).forEach(key => formData.append(key, (data as any)[key]));
+        if (photo) {
+            formData.append('photo', photo);
+        }
+        const response = await axios.post<Profile>(`${API_URL}/user/${userId}`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
         return response;
     }
 
-    async deleteProfile(id: number) {
-        await axios.delete(`${API_URL}/${id}`);
+    async updateProfile(profileId: number, data: Partial<Profile>, photo?: File) {
+        const formData = new FormData();
+        Object.keys(data).forEach(key => formData.append(key, (data as any)[key]));
+        if (photo) {
+            formData.append('photo', photo);
+        }
+        const response = await axios.put<Profile>(`${API_URL}/${profileId}`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+        return response;
+    }
+
+    async deleteProfile(profileId: number) {
+        const response = await axios.delete(`${API_URL}/${profileId}`);
+        return response;
+    }
+
+    async getProfileImage(filename: string) {
+        const response = await axios.get(`${API_URL}/${filename}`, { responseType: 'blob' });
+        return response;
     }
 }
 

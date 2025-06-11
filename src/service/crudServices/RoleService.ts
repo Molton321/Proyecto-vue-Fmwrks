@@ -9,23 +9,24 @@ class RoleService {
         return response;
     }
 
-    async getRole(id: number) {
-        const response = await axios.get<Role>(`${API_URL}/${id}`);
+    async getRole(roleId: number) {
+        const response = await axios.get<Role>(`${API_URL}/${roleId}`);
         return response;
     }
 
-    async createRole(Role: Role) {
-        const response = await axios.post<Role>(API_URL, Role);
+    async createRole(role: Omit<Role, 'id'>) {
+        const response = await axios.post<Role>(API_URL, role);
         return response;
     }
 
-    async updateRole(id: number, Role: Role) {
-        const response = await axios.put<Role>(`${API_URL}/${id}`, Role);
+    async updateRole(roleId: number, role: Partial<Role>) {
+        const response = await axios.put<Role>(`${API_URL}/${roleId}`, role);
         return response;
     }
 
-    async deleteRole(id: number) {
-        await axios.delete(`${API_URL}/${id}`);
+    async deleteRole(roleId: number) {
+        const response = await axios.delete(`${API_URL}/${roleId}`);
+        return response;
     }
 }
 

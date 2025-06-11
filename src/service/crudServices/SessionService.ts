@@ -9,23 +9,29 @@ class SessionService {
         return response;
     }
 
-    async getSession(id: number) {
-        const response = await axios.get<Session>(`${API_URL}/${id}`);
+    async getSession(sessionId: string) {
+        const response = await axios.get<Session>(`${API_URL}/${sessionId}`);
         return response;
     }
 
-    async createSession(Session: Session) {
-        const response = await axios.post<Session>(API_URL, Session);
+    async getSessionsByUserId(userId: number) {
+        const response = await axios.get<Session[]>(`${API_URL}/user/${userId}`);
         return response;
     }
 
-    async updateSession(id: number, Session: Session) {
-        const response = await axios.put<Session>(`${API_URL}/${id}`, Session);
+    async createSession(userId: number, session: Omit<Session, 'id' | 'userId'>) { 
+        const response = await axios.post<Session>(`${API_URL}/user/${userId}`, session);
         return response;
     }
 
-    async deleteSession(id: number) {
-        await axios.delete(`${API_URL}/${id}`);
+    async updateSession(sessionId: string, session: Partial<Session>) {
+        const response = await axios.put<Session>(`${API_URL}/${sessionId}`, session);
+        return response;
+    }
+
+    async deleteSession(sessionId: string) {
+        const response = await axios.delete(`${API_URL}/${sessionId}`);
+        return response;
     }
 }
 

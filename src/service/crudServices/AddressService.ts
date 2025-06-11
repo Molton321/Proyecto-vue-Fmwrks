@@ -14,13 +14,18 @@ class AddressService {
         return response;
     }
 
-    async createAddress(Address: Address) {
-        const response = await axios.post<Address>(API_URL, Address);
+    async getAddressByUserId(userId: number) {
+        const response = await axios.get<Address>(`${API_URL}/user/${userId}`); // Asumiendo que devuelve una sola dirección o la primera encontrada. Ajustar el tipo de respuesta si puede devolver Address[]
         return response;
     }
 
-    async updateAddress(id: number, Address: Address) {
-        const response = await axios.put<Address>(`${API_URL}/${id}`, Address);
+    async createAddress(userId: number, address: Address) {
+        const response = await axios.post<Address>(`${API_URL}/user/${userId}`, address);
+        return response;
+    }
+
+    async updateAddress(id: number, address: Address) {
+        const response = await axios.put<Address>(`${API_URL}/${id}`, address);
         return response;
     }
 

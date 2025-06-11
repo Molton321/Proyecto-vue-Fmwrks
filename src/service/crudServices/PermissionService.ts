@@ -9,23 +9,30 @@ class PermissionService {
         return response;
     }
 
-    async getPermission(id: number) {
-        const response = await axios.get<Permission>(`${API_URL}/${id}`);
+    async getPermission(permissionId: number) {
+        const response = await axios.get<Permission>(`${API_URL}/${permissionId}`);
         return response;
     }
 
-    async createPermission(Permission: Permission) {
-        const response = await axios.post<Permission>(API_URL, Permission);
+    async createPermission(permission: Omit<Permission, 'id'>) {
+        const response = await axios.post<Permission>(API_URL, permission);
         return response;
     }
 
-    async updatePermission(id: number, Permission: Permission) {
-        const response = await axios.put<Permission>(`${API_URL}/${id}`, Permission);
+    async updatePermission(permissionId: number, permission: Partial<Permission>) {
+        const response = await axios.put<Permission>(`${API_URL}/${permissionId}`, permission);
         return response;
     }
 
-    async deletePermission(id: number) {
-        await axios.delete(`${API_URL}/${id}`);
+    async deletePermission(permissionId: number) {
+        const response = await axios.delete(`${API_URL}/${permissionId}`);
+        return response;
+    }
+
+    async getPermissionsGroupedByRole(roleId: number) {
+        // Assuming the response structure is a custom one, adjust <any> if a specific model exists
+        const response = await axios.get<any>(`${API_URL}/grouped/role/${roleId}`);
+        return response;
     }
 }
 
