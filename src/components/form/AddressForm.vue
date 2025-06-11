@@ -11,6 +11,7 @@
     <form @submit.prevent="emitSubmit" class="space-y-4">
       <h2 class="text-xl font-semibold">FBC - Address</h2>
       <button
+         v-if="!form.id"
         @click="gotoCreate"
         class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded absolute right-14 top-24"
       >
