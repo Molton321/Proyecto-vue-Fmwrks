@@ -1,13 +1,20 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue';
-import { useRoute } from 'vue-router';
-import DigitalSignatureService from '@/service/crudServices/DigitalSignatureService'; // Adjust path if necessary
-import UserService from '@/service/crudServices/UserService'; // Adjust path if necessary
+import { useRoute, useRouter } from 'vue-router'; // Added useRouter
+import DigitalSignatureService from '@/service/crudServices/DigitalSignatureService'; 
+import UserService from '@/service/crudServices/UserService'; 
+import Button from 'primevue/button'; // Added Button
+import { useToast } from 'primevue/usetoast'; // Added useToast
+import ProgressSpinner from 'primevue/progressspinner'; // Ensure ProgressSpinner is imported if used directly
+import Message from 'primevue/message'; // Ensure Message is imported if used directly
+import Image from 'primevue/image'; // Ensure Image is imported if used directly
 
 const digitalSignature = ref(null);
 const isLoading = ref(true);
 const error = ref(null);
 const route = useRoute();
+const router = useRouter(); // Initialized router
+const toast = useToast(); // Initialized toast
 const fetchedUserName = ref('');
 const fetchedUserEmail = ref('');
 
@@ -30,7 +37,6 @@ onMounted(async () => {
   if (signatureId) {
     try {
       isLoading.value = true;
-      // Ensure DigitalSignatureService has a method like getDigitalSignature
       const response = await DigitalSignatureService.getSignature(signatureId); 
       digitalSignature.value = response.data; 
       console.log('Digital signature data fetched:', digitalSignature.value);
@@ -50,6 +56,11 @@ onMounted(async () => {
       error.value = null;
     } catch (err) {
       console.error('Failed to fetch digital signature:', err);
+      // Redirect if 404, as per previous implementation
+      if (err.response && err.response.status === 404) {
+        router.push({ name: 'digitalSignature-create', query: { userId: signatureId } });
+        return; // Stop further processing
+      }
       error.value = 'Failed to load digital signature data. ' + (err.message || '');
       digitalSignature.value = null;
     } finally {
@@ -60,6 +71,26 @@ onMounted(async () => {
     isLoading.value = false;
   }
 });
+
+const handleDeleteSignature = async () => {
+  if (!digitalSignature.value || !digitalSignature.value.id) {
+    toast.add({ severity: 'error', summary: 'Error', detail: 'Signature ID not found.', life: 3000 });
+    return;
+  }
+  // Optional: Add a confirmation dialog here (e.g., using PrimeVue's ConfirmDialog)
+  try {
+    isLoading.value = true; // Indicate loading state for delete operation
+    await DigitalSignatureService.deleteSignature(digitalSignature.value.id);
+    toast.add({ severity: 'success', summary: 'Success', detail: 'Digital Signature deleted successfully', life: 3000 });
+    router.push('/digital-signatures'); // Adjust to your digital signatures list route
+  } catch (err) {
+    console.error('Failed to delete digital signature:', err);
+    toast.add({ severity: 'error', summary: 'Error', detail: 'Failed to delete digital signature. ' + (err.message || ''), life: 3000 });
+  } finally {
+    isLoading.value = false;
+  }
+};
+
 </script>
 
 <template>
@@ -97,6 +128,22 @@ onMounted(async () => {
                 </div>
               </div>
             </div>
+          </div>
+          <!-- Action Buttons -->
+          <div class="mt-4 flex justify-content-end">
+            <Button 
+              label="Update"
+              icon="pi pi-pencil" 
+              class="p-button-info mr-2"
+              @click="router.push(`/digital-signature/update/${digitalSignature.id}`)" 
+            />
+            <Button 
+              label="Delete"
+              icon="pi pi-trash" 
+              class="p-button-danger"
+              @click="handleDeleteSignature"
+              :loading="isLoading" 
+            />
           </div>
         </div>
         <div v-else>
