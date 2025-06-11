@@ -305,6 +305,15 @@ const router = createRouter({
                 },
 
                 {
+                    path: '/user/address/:id',
+                    name: 'User address view',
+                    component: () => import('@/views/pages/CRUD/address/view.vue'),
+                    meta: {
+                        requiresAuth: true // Esta ruta requiere autenticación
+                    }
+                },
+
+                {
                     path: '/permission',
                     name: 'permission',
                     component: () => import('@/views/pages/CRUD/permission/list.vue'),

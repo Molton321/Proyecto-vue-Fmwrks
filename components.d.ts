@@ -7,6 +7,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    AddressForm: typeof import('./src/components/form/AddressForm.vue')['default']
     BestSellingWidget: typeof import('./src/components/dashboard/BestSellingWidget.vue')['default']
     Button: typeof import('primevue/button')['default']
     Chart: typeof import('primevue/chart')['default']
@@ -19,9 +20,11 @@ declare module 'vue' {
     LineChart: typeof import('./src/components/dashboard/LineChart.vue')['default']
     Menu: typeof import('primevue/menu')['default']
     NotificationsWidget: typeof import('./src/components/dashboard/NotificationsWidget.vue')['default']
+    PermissionsForm: typeof import('./src/components/form/PermissionsForm.vue')['default']
     PricingWidget: typeof import('./src/components/landing/PricingWidget.vue')['default']
     RecentSalesWidget: typeof import('./src/components/dashboard/RecentSalesWidget.vue')['default']
     RevenueStreamWidget: typeof import('./src/components/dashboard/RevenueStreamWidget.vue')['default']
+    RolesForm: typeof import('./src/components/form/RolesForm.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SearchingBar: typeof import('./src/components/dashboard/SearchingBar.vue')['default']
@@ -31,6 +34,8 @@ declare module 'vue' {
     TopbarWidget: typeof import('./src/components/landing/TopbarWidget.vue')['default']
     UniversalForm: typeof import('./src/components/form/UniversalForm.vue')['default']
     UserForm: typeof import('./src/components/users/UserForm.vue')['default']
+    UserRolesForm: typeof import('./src/components/form/UserRolesForm.vue')['default']
+    UsersForm: typeof import('./src/components/form/UsersForm.vue')['default']
   }
   export interface ComponentCustomProperties {
     StyleClass: typeof import('primevue/styleclass')['default']
