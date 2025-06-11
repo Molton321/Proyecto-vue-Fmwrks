@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import UserRoleService from '@/service/crudServices/UserRoleService';
-import UserService from '@/service/UserService';
+import UserService from '@/service/crudServices/UserService';
 import RoleService from '@/service/crudServices/RoleService';
 import { useRoute, useRouter } from 'vue-router';
 import type { User } from '@/models/User';

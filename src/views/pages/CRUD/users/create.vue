@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import UsersForm from '@/components/form/UsersForm.vue';
-import UserService from '@/service/UserService';
+import UserService from '@/service/crudServices/UserService';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();

@@ -288,7 +288,7 @@ const router = createRouter({
                     }
                 },
                 {
-                    path: '/user/update/:id',
+                    path: '/user/:id/update',
                     name: 'user update',
                     component: () => import('@/views/pages/CRUD/users/update.vue'),
                     meta: {
@@ -296,7 +296,7 @@ const router = createRouter({
                     }
                 },
                 {
-                    path: '/user/view/:id',
+                    path: '/user/:id/view/',
                     name: 'user view',
                     component: () => import('@/views/pages/CRUD/users/view.vue'),
                     meta: {
