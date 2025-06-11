@@ -255,14 +255,7 @@ const router = createRouter({
                         requiresAuth: true // Esta ruta requiere autenticación
                     }
                 },
-                {
-                    path: '/user-role/update/:id',
-                    name: 'user role update',
-                    component: () => import('@/views/pages/CRUD/userRole/update.vue'),
-                    meta: {
-                        requiresAuth: true // Esta ruta requiere autenticación
-                    }
-                },
+                
                 {
                     path: '/user-role/view/:id',
                     name: 'user role view',

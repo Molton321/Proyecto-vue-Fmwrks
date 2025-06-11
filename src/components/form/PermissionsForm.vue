@@ -48,12 +48,19 @@ const onSubmit = handleSubmit((values) => {
     <div>
       <label for="method" class="block mb-1 font-medium">Method</label>
       <Field
-        name="method"
-        id="method"
-        :model-value="props.initialValues.method"
-        :readonly="props.readOnly"
-        class="w-full border rounded p-2"
-      />
+  name="method"
+  as="select"
+  id="method"
+  :disabled="props.readOnly"
+  class="w-full border rounded p-2"
+>
+  <option value="">-- Select Method --</option>
+  <option value="GET">GET</option>
+  <option value="POST">POST</option>
+  <option value="PUT">PUT</option>
+  <option value="DELETE">DELETE</option>
+</Field>
+
       <ErrorMessage name="method" class="text-red-500 text-sm" />
     </div>
     <button
