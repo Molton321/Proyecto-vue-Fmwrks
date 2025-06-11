@@ -88,7 +88,7 @@ onMounted(fetchPermissions);
       <td class="px-4 py-2 space-x-2">
         <button @click="goTo(Permission.id!, 'view')" class="text-green-500 hover:underline">View</button>
         <button @click="goTo(Permission.id!, 'update')" class="text-blue-500 hover:underline">Update</button>
-        <button @click="goTo(Permission.id!, '')" class="text-red-500 hover:underline">Delete</button>
+        <button @click="deletePermission(Permission.id!)" class="text-red-500 hover:underline">Delete</button>
       </td>
     </tr>
   </tbody>

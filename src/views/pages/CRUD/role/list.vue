@@ -30,8 +30,23 @@ const goToCreate = () => {
   router.push('/role/create');
 };
 
-const goToEdit = (id: number) => {
-  router.push(`/role/update/${id}`);
+const goTo = (id: number, where: string) => {
+  console.log(`/role/${where}/${id}`);
+  router.push(`/role/${where}/${id}`);
+};
+
+const goToView = (id: number) => {
+  router.push(`/user-role/view/${id}`);
+};
+
+const deleteRole = async (id: number) => {
+  try {
+    await RolesService.deleteRole(id);
+    // Refresh the list after deletion
+    await fetchRoles();
+  } catch (error) {
+    console.error('Error deleting User:', error);
+  }
 };
 
 const labelMap = (key: string) =>
@@ -74,7 +89,9 @@ onMounted(fetchRoles);
         {{ Role[key] }}
       </td>
       <td class="px-4 py-2 space-x-2">
-        <button @click="goToEdit(Role.id!)" class="text-blue-500 hover:underline">Edit</button>
+        <button @click="goToView(Role.id!)" class="text-green-500 hover:underline">View</button>
+        <button @click="goTo(Role.id!, 'update')" class="text-blue-500 hover:underline">Update</button>
+        <button @click="deleteRole(Role.id!)" class="text-red-500 hover:underline">Delete</button>
       </td>
     </tr>
   </tbody>

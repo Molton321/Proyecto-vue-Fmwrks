@@ -1,35 +1,16 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import UniversalForm from '@/components/form/UniversalForm.vue';
+import { useRoute, useRouter } from 'vue-router';
+import UserRolesForm from '@/components/form/UserRolesForm.vue';
 import UserRoleService from '@/service/crudServices/UserRoleService';
-import { UserRole } from '@/models/userRole';
-import { useRouter } from 'vue-router';
 
-import { z } from 'zod';
-import { toTypedSchema } from '@vee-validate/zod';
-
+const route = useRoute();
 const router = useRouter();
+const roleId = Number(route.params.id);
 
-// Modelo inicial que coincide con la interfaz UserRole
-const UserRoleModel: UserRole = {
-    user_id: undefined,
-    role_id: undefined,
-
-};
-
-// Esquema de validación
-const rawSchema = z.object({
-    user_id: z.number({ invalid_type_error: 'User ID must be a number' }),
-    role_id: z.number({ invalid_type_error: 'Role ID must be a number' }),
-});
-
-const UserRoleSchema = toTypedSchema(rawSchema);
-
-// Enviar
-const handleSubmit = async (values: UserRole) => {
+const handleSubmit = async (values: { user_id: number; role_id: number }) => {
   try {
-    await UserRoleService.createUserRole(values);
-    router.push('/UserRole');
+    await UserRoleService.createUserRole(values.user_id, values.role_id);
+    router.push('/user-role/view/' + roleId);
   } catch (err) {
     alert('Failed to create UserRole.');
   }
@@ -37,11 +18,5 @@ const handleSubmit = async (values: UserRole) => {
 </script>
 
 <template>
-  <UniversalForm
-    :model="UserRoleModel"
-    :validationSchema="UserRoleSchema"
-    :onSubmit="handleSubmit"
-    submitLabel="Create UserRole"
-    formTitle="Create UserRole"
-  />
+  <UserRolesForm :role-id="roleId" @submit="handleSubmit" />
 </template>

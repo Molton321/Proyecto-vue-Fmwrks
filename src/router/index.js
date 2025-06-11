@@ -248,7 +248,7 @@ const router = createRouter({
                 },
 
                 {
-                    path: '/user-role/create',
+                    path: '/user-role/create/:id',
                     name: 'user role create',
                     component: () => import('@/views/pages/CRUD/userRole/create.vue'),
                     meta: {

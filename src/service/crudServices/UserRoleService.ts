@@ -27,7 +27,7 @@ class UserRoleService {
     }
 
     async createUserRole(userId: number, roleId: number, data?: any) { // data is optional as per routes
-        const response = await axios.post<UserRole>(`${API_URL}/user/${userId}/role/${roleId}`, data);
+        const response = await axios.post<UserRole>(`${API_URL}/user/${userId}/role/${roleId}`, data ?? {});
         return response;
     }
 
