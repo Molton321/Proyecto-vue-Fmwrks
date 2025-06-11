@@ -34,7 +34,7 @@ const router = createRouter({
                     }
                 },
                 {
-                    path: '/address/view/:id',
+                    path: '/user/:id/address',
                     name: 'address view',
                     component: () => import('@/views/pages/CRUD/address/view.vue'),
                     meta: {
