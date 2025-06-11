@@ -363,25 +363,9 @@ const router = createRouter({
                 },
 
                 {
-                    path: '/role-permission/create/:id',
+                    path: '/role-permissions/:id',
                     name: 'role permission create',
                     component: () => import('@/views/pages/CRUD/rolePermission/create.vue'),
-                    meta: {
-                        requiresAuth: true // Esta ruta requiere autenticación
-                    }
-                },
-                {
-                    path: '/role-permission/update/:id',
-                    name: 'role permission update',
-                    component: () => import('@/views/pages/CRUD/rolePermission/update.vue'),
-                    meta: {
-                        requiresAuth: true // Esta ruta requiere autenticación
-                    }
-                },
-                {
-                    path: '/role-permission/view/:id',
-                    name: 'role permission view',
-                    component: () => import('@/views/pages/CRUD/rolePermission/view.vue'),
                     meta: {
                         requiresAuth: true // Esta ruta requiere autenticación
                     }

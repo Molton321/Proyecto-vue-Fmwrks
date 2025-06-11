@@ -7,7 +7,7 @@ import RolePermissionService from '@/service/crudServices/RolePermissionService'
 const route = useRoute()
 const router = useRouter()
 
-const roleId = Number(route.params.roleId)
+const roleId = Number(route.params.id)
 const permissionId = Number(route.params.permissionId)
 
 const initialValues = ref({
@@ -18,7 +18,7 @@ const initialValues = ref({
 const handleSubmit = async (values: any) => {
   try {
     await RolePermissionService.createRolePermission(roleId, permissionId)
-    router.push('/role-permissions') // o a donde necesites redirigir
+    router.push(`/role-permissions/${roleId}`) // o a donde necesites redirigir
   } catch (err) {
     alert('Failed to create role-permission.')
     console.error(err)
