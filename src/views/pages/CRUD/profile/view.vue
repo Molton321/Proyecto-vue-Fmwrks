@@ -1,14 +1,20 @@
 <script setup>
-import { ref, onMounted, computed } from 'vue'; // Added computed
-import { useRoute } from 'vue-router';
-// Adjust the import path and service methods as per your project structure.
-import  ProfileService  from '@/service/crudServices/ProfileService'; // Assuming ProfileService.ts exists
-import UserService from '@/service/crudServices/UserService'; // Assuming UserService.ts exists
+import { ref, onMounted, computed } from 'vue';
+import { useRoute, useRouter } from 'vue-router'; // Added useRouter
+import ProfileService from '@/service/crudServices/ProfileService';
+import UserService from '@/service/crudServices/UserService';
+import { useToast } from 'primevue/usetoast'; // Added useToast
+import Button from 'primevue/button'; // Added Button for template
+import ProgressSpinner from 'primevue/progressspinner'; // Added ProgressSpinner for template
+import Message from 'primevue/message'; // Added Message for template
+import Image from 'primevue/image'; // Added Image for template
 
-const profile = ref(null);
+const profile = ref(null); 
 const isLoading = ref(true);
 const error = ref(null);
 const route = useRoute();
+const router = useRouter(); // Added for navigation
+const toast = useToast(); // Added for notifications
 const fetchedUserName = ref('');
 const fetchedUserEmail = ref('');
 
@@ -18,7 +24,6 @@ const fullImageUrl = computed(() => {
     const imagePath = String(profile.value.photo).replace(/^\//, ''); // Remove leading slash
     
     if (!imagePath.trim()) return null; // If imagePath is empty after processing, no valid image
-    // console.log('Full image URL:', `${baseUrl}/${imagePath}`); // Debugging log
     return `${baseUrl}/${imagePath}`;
   }
   return null;
@@ -29,26 +34,28 @@ onMounted(async () => {
   if (profileId) {
     try {
       isLoading.value = true;
-      const response = await ProfileService.getProfile(profileId); 
+      const response = await ProfileService.getProfile(Number(profileId)); 
       profile.value = response.data; 
-      // console.log('Profile data fetched:', profile.value.photo); 
 
       if (profile.value && profile.value.user_id) {
         try {
-          const userResponse = await UserService.getUser(profile.value.user_id); // Assuming getUserById exists
+          const userResponse = await UserService.getUser(profile.value.user_id);
           if (userResponse && userResponse.data) {
             fetchedUserName.value = userResponse.data.name;
             fetchedUserEmail.value = userResponse.data.email;
           }
         } catch (userErr) {
           console.error('Failed to fetch user details:', userErr);
-          // Optionally set a specific error for user data fetching
+          // Optionally set a user-specific error message or handle as needed
         }
       }
       error.value = null;
     } catch (err) {
       console.error('Failed to fetch profile:', err);
-      error.value = 'Failed to load profile data. ' + (err.message || '');
+      error.value = 'Failed to load profile data. ' + (err.response?.data?.message || err.message || '');
+      if (err.response && err.response.status === 404) {
+        error.value = 'Profile not found.';
+      }
       profile.value = null;
     } finally {
       isLoading.value = false;
@@ -58,13 +65,35 @@ onMounted(async () => {
     isLoading.value = false;
   }
 });
+
+const handleUpdate = () => {
+  if (profile.value && profile.value.id) {
+    router.push(`/profiles/update/${profile.value.id}`);
+  }
+};
+
+const handleDeleteProfile = async () => {
+  if (profile.value && profile.value.id) {
+    isLoading.value = true;
+    try {
+      await ProfileService.deleteProfile(profile.value.id);
+      toast.add({ severity: 'success', summary: 'Deleted', detail: 'Profile deleted successfully', life: 3000 });
+      router.push('/profiles'); // Navigate to a relevant page, e.g., profiles list
+    } catch (err) {
+      console.error('Failed to delete profile:', err);
+      toast.add({ severity: 'error', summary: 'Error', detail: 'Failed to delete profile. ' + (err.response?.data?.message || err.message || ''), life: 5000 });
+      isLoading.value = false;
+    }
+  }
+};
+
 </script>
 
 <template>
   <div class="grid">
     <div class="col-12">
       <div class="card">
-        <div v-if="isLoading" class="flex justify-content-center">
+        <div v-if="isLoading && !profile" class="flex justify-content-center"> {/* Adjusted v-if for loading state */}
           <ProgressSpinner style="width: 50px; height: 50px" strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s" />
         </div>
         <div v-else-if="error">
@@ -95,14 +124,22 @@ onMounted(async () => {
                 </div>
               </div>
             </div>
+            <div class="mt-4 flex justify-content-end col-12"> 
+            <Button 
+              label="Update"
+              icon="pi pi-pencil" 
+              class="p-button-info mr-2"
+              @click="handleUpdate" 
+            />
+            <Button 
+              label="Delete"
+              icon="pi pi-trash" 
+              class="p-button-danger"
+              @click="handleDeleteProfile"
+              :loading="isLoading" 
+            />
           </div>
-          <!-- You can add more profile details or actions here -->
-          <!-- For example, a button to edit the profile -->
-          <!--
-          <div class="mt-4">
-            <Button label="Edit Profile" icon="pi pi-pencil" class="p-button-info" @click="$router.push(`/profile/update/${route.params.id}`)" />
           </div>
-          -->
         </div>
         <div v-else>
            <Message severity="warn">No profile data to display.</Message>
@@ -113,7 +150,6 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-/* Add any component-specific styles here if needed */
 .p-image-preview-indicator, .p-image-preview-icon {
     font-size: 1.5rem;
 }

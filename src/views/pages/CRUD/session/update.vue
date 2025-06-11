@@ -3,17 +3,18 @@ import { ref, toRaw, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import SessionForm from '@/components/form/SessionForm.vue';
 import SessionService from '@/service/crudServices/SessionService';
-
+import { DateTime } from 'luxon';
 
 const router = useRouter();
 const route = useRoute();
 const userId = Number(route.params.id);
-const sessionId = Number(route.params.id_session);
+const sessionIdParam = route.params.id_session;
+const sessionId = Array.isArray(sessionIdParam) ? sessionIdParam[0] : sessionIdParam;
 
 const initialValues = ref({
   token: '',
     expiration: '',
-    FAcode: '',
+    FACode: '',
     state: '',
     user_id: userId,
 });
@@ -26,16 +27,14 @@ onMounted(async () => {
     console.log('Loaded session:', pwd);
     initialValues.value = {
       token: pwd.token ?? '',
-        expiration: pwd.expiration
-        ? (typeof pwd.expiration === 'string'
-            ? pwd.expiration
-            : pwd.expiration.toISO({ suppressMilliseconds: true }).slice(0, 16))
-        : '',
-        FAcode: pwd.FACode ?? '',
+        expiration: pwd.expiration ? (typeof pwd.expiration === 'string' ? DateTime.fromHTTP(pwd.expiration).toFormat("yyyy-MM-dd'T'HH:mm") : pwd.expiration.toFormat("yyyy-MM-dd'T'HH:mm")) : '',
+        FACode: pwd.FACode ?? '',
         state: pwd.state ?? '',
         user_id: userId,
 
     };
+
+    console.log('Session data:', initialValues.value);
 
     console.log('Initial values set:', initialValues.value);
   } catch (err) {
@@ -49,11 +48,11 @@ const handleSubmit = async (values: any) => {
       // No se actualiza content
       token: values.token,
       expiration: values.expiration,
-        FACode: values.FAcode,
+        FACode: values.FACode,
         state: values.state,
       user_id: values.user_id,
     });
-    router.push(`/user/${userId}/session`);
+    router.push(`/user/${userId}/sessions`);
   } catch (err) {
     alert('Failed to update session.');
   }
