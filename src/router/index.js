@@ -58,7 +58,7 @@ const router = createRouter({
                     }
                 },
                 {
-                    path: '/profile/view/:id',
+                    path: '/user/:id/profile',
                     name: 'profile view',
                     component: () => import('@/views/pages/CRUD/profile/view.vue'),
                     meta: {
@@ -181,7 +181,7 @@ const router = createRouter({
                     }
                 },
                 {
-                    path: '/user/:id/passwords/update/:id',
+                    path: '/user/:id/passwords/update/:id_password',
                     name: 'password update',
                     component: () => import('@/views/pages/CRUD/password/update.vue'),
                     meta: {
@@ -189,7 +189,7 @@ const router = createRouter({
                     }
                 },
                 {
-                    path: '/user/:id/passwords/view/:id',
+                    path: '/user/:id/passwords/view/:id_password',
                     name: 'password view',
                     component: () => import('@/views/pages/CRUD/password/view.vue'),
                     meta: {

@@ -14,13 +14,12 @@ const goToCreate = () => {
     router.push(`/user/${route.params.id}/passwords/create`);
 };
 
-const goTo = (id: number, where: string) => {
-    console.log(`/role/${where}/${id}`);
-    router.push(`/role/${where}/${id}`);
+const goToUpdate = (id: number, action: string) => {
+    router.push(`/user/${route.params.id}/passwords/update/${id}`);
 };
 
 const goToView = (id: number) => {
-    router.push(`/user-role/view/${id}`);
+    router.push(`/user/${route.params.id}/passwords/view/${id}`);
 };
 
 const deletePassword = async (id: number) => {
@@ -85,7 +84,7 @@ onMounted(fetchPasswords);
                     <td class="px-4 py-2">{{ password.endAt }}</td>
                     <td class="px-4 py-2 space-x-2">
                         <button @click="goToView(password.id!)" class="text-green-500 hover:underline">View</button>
-                        <button @click="goTo(password.id!, 'update')" class="text-blue-500 hover:underline">Update</button>
+                        <button @click="goToUpdate(password.id!, 'update')" class="text-blue-500 hover:underline">Update</button>
                         <button @click="deletePassword(password.id!)" class="text-red-500 hover:underline">Delete</button>
                     </td>
                 </tr>
