@@ -18,7 +18,7 @@ const router = createRouter({
                     }
                 },
                 {
-                    path: '/address/create',
+                    path: '/user/:id/address/create',
                     name: 'address create',
                     component: () => import('@/views/pages/CRUD/address/create.vue'),
                     meta: {

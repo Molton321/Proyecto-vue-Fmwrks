@@ -8,15 +8,9 @@
     <div ref="mapContainer" class="h-64 md:h-full rounded border" />
 
     <!-- Formulario -->
-    <form @submit.prevent="emitSubmit" class="space-y-4">
+    <form @submit.prevent="emitSubmit" class="space-y-4" >
       <h2 class="text-xl font-semibold">FBC - Address</h2>
-      <button
-         v-if="!form.id"
-        @click="gotoCreate"
-        class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded absolute right-14 top-24"
-      >
-        Create Address
-      </button>   
+       
       <div>
         <label class="block mb-1 font-medium">Street</label>
         <input
@@ -50,6 +44,14 @@
         />
       </div>
     </form>
+
+    <button
+         v-if="!form.id"
+        @click="gotoCreate"
+        class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+      >
+        Create Address
+      </button>
   </div>
 </template>
 
@@ -58,14 +60,16 @@ import { onMounted, ref, watch } from 'vue'
 import * as maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import type { Address } from '@/models/Address'
+import { useRoute } from 'vue-router';
 
 const props = defineProps<{
   modelValue: Address
 }>()
 const router = useRouter()
+const route = useRoute();
 
 const gotoCreate = () => {
-    router.push('/address/create')
+    router.push(`/user/${route.params.id}/address/create`)
 }
 
 const emit = defineEmits<{
