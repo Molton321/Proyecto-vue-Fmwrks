@@ -37,7 +37,8 @@ onMounted(async () => {
   if (signatureId) {
     try {
       isLoading.value = true;
-      const response = await DigitalSignatureService.getSignature(signatureId); 
+      const response = await DigitalSignatureService.getSignatureByUserId(signatureId); 
+      console.log('Digital signature response:', signatureId); // Debugging log
       digitalSignature.value = response.data; 
       console.log('Digital signature data fetched:', digitalSignature.value);
 
@@ -83,7 +84,6 @@ const handleDeleteSignature = async () => {
     toast.add({ severity: 'error', summary: 'Error', detail: 'Signature ID not found.', life: 3000 });
     return;
   }
-  // Optional: Add a confirmation dialog here (e.g., using PrimeVue's ConfirmDialog)
   try {
     isLoading.value = true; // Indicate loading state for delete operation
     await DigitalSignatureService.deleteSignature(digitalSignature.value.id);
