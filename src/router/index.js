@@ -207,6 +207,14 @@ const router = createRouter({
 
                 {
                     path: '/user/:id/sessions',
+                    name: 'session list',
+                    component: () => import('@/views/pages/CRUD/session/list.vue'),
+                    meta: {
+                        requiresAuth: true // Esta ruta requiere autenticación
+                    }
+                },
+                {
+                    path: '/user/:id/sessions/create',
                     name: 'session create',
                     component: () => import('@/views/pages/CRUD/session/create.vue'),
                     meta: {
