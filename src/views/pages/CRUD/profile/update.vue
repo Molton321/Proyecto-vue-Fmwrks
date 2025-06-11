@@ -39,7 +39,7 @@ const fullCurrentImageUrl = computed(() => {
 });
 
 onMounted(async () => {
-  const id = route.params.id;
+  const id = route.params.id_profile;
   if (typeof id === 'string') {
     profileId.value = parseInt(id, 10);
   } else if (typeof id === 'number') {
@@ -47,7 +47,7 @@ onMounted(async () => {
   } else {
     errorMessage.value = "Profile ID is missing or invalid.";
     toast.add({ severity: 'error', summary: 'Error', detail: errorMessage.value, life: 3000 });
-    router.push('/profiles'); // Or some other appropriate fallback
+    router.push(`/user/${route.params.id}/profile`); // Or some other appropriate fallback
     return;
   }
 
@@ -103,6 +103,7 @@ const handleSubmit = async () => {
     await ProfileService.updateProfile(profileId.value, profileData, photoFile.value || undefined);
 
     toast.add({ severity: 'success', summary: 'Success', detail: 'Profile updated successfully!', life: 3000 });
+    router.push(`/user/${route.params.id}/profile`);
     if (photoFile.value) { // If a new photo was uploaded, the URL might change
         const updatedProfileResponse = await ProfileService.getProfile(profileId.value);
         currentPhotoUrl.value = updatedProfileResponse.data.photo || null;

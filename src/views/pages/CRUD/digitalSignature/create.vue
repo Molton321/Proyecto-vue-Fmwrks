@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'; // Added onMounted
 import { useRouter } from 'vue-router';
+import { useRoute } from 'vue-router';
 import { useToast } from 'primevue/usetoast';
 import FileUpload from 'primevue/fileupload';
 // import InputNumber from 'primevue/inputnumber'; // Removed InputNumber
@@ -13,6 +14,7 @@ import UserService from '@/service/crudServices/UserService'; // Added UserServi
 import type { User } from '@/models/User'; // Added User type import
 
 const router = useRouter();
+const route = useRoute();
 const toast = useToast();
 
 const userId = ref<number | null>(null);
@@ -75,7 +77,7 @@ const handleSubmit = async () => {
     await DigitalSignatureService.createSignature(userId.value, photoFile.value);
 
     toast.add({ severity: 'success', summary: 'Success', detail: 'Digital Signature created successfully!', life: 3000 });
-    router.push('/digital-signatures'); // Or the correct list view route
+    router.push(`/user/${route.params.id}/signature`); // Or the correct list view route
   } catch (error: any) {
     errorMessage.value = error.response?.data?.message || error.message || 'Failed to create digital signature.';
     toast.add({ severity: 'error', summary: 'Error', detail: errorMessage.value, life: 5000 });

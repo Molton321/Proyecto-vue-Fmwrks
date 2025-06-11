@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+import { useRoute } from 'vue-router';
 import { useToast } from 'primevue/usetoast';
 import FileUpload from 'primevue/fileupload';
 import Dropdown from 'primevue/dropdown';
@@ -14,6 +15,7 @@ import type { User } from '@/models/User';
 import type { Profile } from '@/models/Profile';
 
 const router = useRouter();
+const route = useRoute();
 const toast = useToast();
 
 const userId = ref<number | null>(null);
@@ -81,7 +83,7 @@ const handleSubmit = async () => {
     await ProfileService.createProfile(userId.value, profileData, photoFile.value || undefined);
 
     toast.add({ severity: 'success', summary: 'Success', detail: 'Profile created successfully!', life: 3000 });
-    router.push('/profiles'); // Adjust as needed, e.g., to the new profile's view page
+    router.push(`/user/${route.params.id}/profile`); // Adjust as needed, e.g., to the new profile's view page
   } catch (error: any) {
     errorMessage.value = error.response?.data?.message || error.message || 'Failed to create profile.';
     toast.add({ severity: 'error', summary: 'Creation Error', detail: errorMessage.value, life: 5000 });

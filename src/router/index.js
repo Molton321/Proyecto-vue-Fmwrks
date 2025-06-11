@@ -42,7 +42,7 @@ const router = createRouter({
                     }
                 },
                 {
-                    path: '/profile/create',
+                    path: '/user/:id/profile/create',
                     name: 'profile create',
                     component: () => import('@/views/pages/CRUD/profile/create.vue'),
                     meta: {
@@ -50,7 +50,7 @@ const router = createRouter({
                     }
                 },
                 {
-                    path: '/profile/update/:id',
+                    path: '/user/:id/profile/update/:id_profile',
                     name: 'profile update',
                     component: () => import('@/views/pages/CRUD/profile/update.vue'),
                     meta: {
@@ -66,7 +66,7 @@ const router = createRouter({
                     }
                 },
                 {
-                    path: '/digital-signature/create',
+                    path: '/user/:id/signature/create',
                     name: 'digital signature create',
                     component: () => import('@/views/pages/CRUD/digitalSignature/create.vue'),
                     meta: {
@@ -74,7 +74,7 @@ const router = createRouter({
                     }
                 },
                 {
-                    path: '/digital-signature/update/:id',
+                    path: '/user/:id/signature/update/:id_signature',
                     name: 'digital signature update',
                     component: () => import('@/views/pages/CRUD/digitalSignature/update.vue'),
                     meta: {

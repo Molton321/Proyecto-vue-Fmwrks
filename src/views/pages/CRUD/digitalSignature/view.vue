@@ -58,7 +58,7 @@ onMounted(async () => {
       console.error('Failed to fetch digital signature:', err);
       // Redirect if 404, as per previous implementation
       if (err.response && err.response.status === 404) {
-        router.push({ name: 'digitalSignature-create', query: { userId: signatureId } });
+        router.push(`/user/${route.params.id}/signature/create`);
         return; // Stop further processing
       }
       error.value = 'Failed to load digital signature data. ' + (err.message || '');
@@ -72,6 +72,12 @@ onMounted(async () => {
   }
 });
 
+const handleUpdate = () => {
+  if (digitalSignature.value && digitalSignature.value.id) {
+    router.push(`/user/${route.params.id}/signature/update/${digitalSignature.value.id}`);
+  }
+};
+
 const handleDeleteSignature = async () => {
   if (!digitalSignature.value || !digitalSignature.value.id) {
     toast.add({ severity: 'error', summary: 'Error', detail: 'Signature ID not found.', life: 3000 });
@@ -82,7 +88,7 @@ const handleDeleteSignature = async () => {
     isLoading.value = true; // Indicate loading state for delete operation
     await DigitalSignatureService.deleteSignature(digitalSignature.value.id);
     toast.add({ severity: 'success', summary: 'Success', detail: 'Digital Signature deleted successfully', life: 3000 });
-    router.push('/digital-signatures'); // Adjust to your digital signatures list route
+    router.push(`/user/${route.params.id}/signature`); // Adjust to your digital signatures list route
   } catch (err) {
     console.error('Failed to delete digital signature:', err);
     toast.add({ severity: 'error', summary: 'Error', detail: 'Failed to delete digital signature. ' + (err.message || ''), life: 3000 });
@@ -135,7 +141,7 @@ const handleDeleteSignature = async () => {
               label="Update"
               icon="pi pi-pencil" 
               class="p-button-info mr-2"
-              @click="router.push(`/digital-signature/update/${digitalSignature.id}`)" 
+              @click="handleUpdate" 
             />
             <Button 
               label="Delete"

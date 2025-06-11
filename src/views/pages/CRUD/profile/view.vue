@@ -52,23 +52,19 @@ onMounted(async () => {
       error.value = null;
     } catch (err) {
       console.error('Failed to fetch profile:', err);
-      error.value = 'Failed to load profile data. ' + (err.response?.data?.message || err.message || '');
-      if (err.response && err.response.status === 404) {
-        error.value = 'Profile not found.';
-      }
-      profile.value = null;
+      router.push(`/user/${route.params.id}/profiles/create`);
     } finally {
       isLoading.value = false;
     }
   } else {
-    error.value = 'No profile ID provided in the route.';
+    router.push(`/user/${route.params.id}/profile/create`); // Redirect if no profile ID is provided
     isLoading.value = false;
   }
 });
 
 const handleUpdate = () => {
   if (profile.value && profile.value.id) {
-    router.push(`/profiles/update/${profile.value.id}`);
+    router.push(`/user/${route.params.id}/profile/update/${profile.value.id}`);
   }
 };
 
@@ -78,7 +74,7 @@ const handleDeleteProfile = async () => {
     try {
       await ProfileService.deleteProfile(profile.value.id);
       toast.add({ severity: 'success', summary: 'Deleted', detail: 'Profile deleted successfully', life: 3000 });
-      router.push('/profiles'); // Navigate to a relevant page, e.g., profiles list
+      router.push(`/user/${route.params.id}/profile/create`); // Navigate to a relevant page, e.g., profiles list
     } catch (err) {
       console.error('Failed to delete profile:', err);
       toast.add({ severity: 'error', summary: 'Error', detail: 'Failed to delete profile. ' + (err.response?.data?.message || err.message || ''), life: 5000 });
