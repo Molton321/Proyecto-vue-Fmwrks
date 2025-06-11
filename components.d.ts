@@ -23,6 +23,7 @@ declare module 'vue' {
     PricingWidget: typeof import('./src/components/landing/PricingWidget.vue')['default']
     RecentSalesWidget: typeof import('./src/components/dashboard/RecentSalesWidget.vue')['default']
     RevenueStreamWidget: typeof import('./src/components/dashboard/RevenueStreamWidget.vue')['default']
+    RolePermissions: typeof import('./src/components/form/RolePermissions.vue')['default']
     RolesForm: typeof import('./src/components/form/RolesForm.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
