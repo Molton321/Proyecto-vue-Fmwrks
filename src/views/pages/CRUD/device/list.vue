@@ -28,10 +28,6 @@ const goToUpdate = (id: number) => {
   router.push(`/user/${userId}/devices/update/${id}`);
 };
 
-const goToView = (id: number) => {
-  router.push(`/user/${userId}/devices/view/${id}`);
-};
-
 const deleteDevice = async (id: number) => {
   try {
     await DeviceService.deleteDevice(id);
@@ -69,7 +65,6 @@ onMounted(fetchDevices);
           <td class="px-4 py-2">{{ device.ip }}</td>
           <td class="px-4 py-2">{{ device.operating_system }}</td>
           <td class="px-4 py-2 space-x-2">
-            <button @click="goToView(device.id)" class="text-green-500 hover:underline">View</button>
             <button @click="goToUpdate(device.id)" class="text-blue-500 hover:underline">Update</button>
             <button @click="deleteDevice(device.id)" class="text-red-500 hover:underline">Delete</button>
           </td>
