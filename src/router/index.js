@@ -82,7 +82,7 @@ const router = createRouter({
                     }
                 },
                 {
-                    path: '/digital-signature/view/:id',
+                    path: '/user/:id/signature',
                     name: 'digital signature view',
                     component: () => import('@/views/pages/CRUD/digitalSignature/view.vue'),
                     meta: {
