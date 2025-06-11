@@ -39,6 +39,10 @@ const goToView = (id: number) => {
   router.push(`/user-role/view/${id}`);
 };
 
+const goToPermissions = (id: number) => {
+  router.push(`/role-permissions/${id}`);
+};
+
 const deleteRole = async (id: number) => {
   try {
     await RolesService.deleteRole(id);
@@ -92,6 +96,7 @@ onMounted(fetchRoles);
         <button @click="goToView(Role.id!)" class="text-green-500 hover:underline">View</button>
         <button @click="goTo(Role.id!, 'update')" class="text-blue-500 hover:underline">Update</button>
         <button @click="deleteRole(Role.id!)" class="text-red-500 hover:underline">Delete</button>
+        <button @click="goToPermissions(Role.id!)" class="text-orange-500 hover:underline">Permissions</button>
       </td>
     </tr>
   </tbody>
