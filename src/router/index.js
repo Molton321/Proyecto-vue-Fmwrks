@@ -26,7 +26,7 @@ const router = createRouter({
                     }
                 },
                 {
-                    path: '/address/update/:id',
+                    path: '/user/:id/address/update/:id_address',
                     name: 'address update',
                     component: () => import('@/views/pages/CRUD/address/update.vue'),
                     meta: {
