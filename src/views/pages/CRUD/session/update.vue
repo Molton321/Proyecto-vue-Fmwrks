@@ -39,7 +39,7 @@ onMounted(async () => {
 
     console.log('Initial values set:', initialValues.value);
   } catch (err) {
-    alert('Error loading password');
+    alert('Error loading session');
   }
 });
 
@@ -55,7 +55,7 @@ const handleSubmit = async (values: any) => {
     });
     router.push(`/user/${userId}/session`);
   } catch (err) {
-    alert('Failed to update password.');
+    alert('Failed to update session.');
   }
 };
 </script>

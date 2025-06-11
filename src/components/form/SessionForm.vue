@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, toRaw, watch } from 'vue';
 import { useForm, Field, ErrorMessage } from 'vee-validate';
 import { z } from 'zod';
 import { toTypedSchema } from '@vee-validate/zod';
@@ -22,10 +22,22 @@ const schema = toTypedSchema(
   })
 );
 
-const { handleSubmit } = useForm({
+const { handleSubmit, resetForm } = useForm({
   validationSchema: schema,
   initialValues: props.initialValues ?? { token: '', expiration: '', FAcode: '', state: '', user_id: undefined },
 });
+
+watch(
+  () => props.initialValues,
+  (newValues) => {
+    if (newValues) {
+      resetForm({ values: toRaw(newValues) });
+    }
+  },
+  { immediate: true, deep: true }
+);
+
+
 
 const onSubmit = handleSubmit(async (values) => {
   isSubmitting.value = true;

@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     AddressForm: typeof import('./src/components/form/AddressForm.vue')['default']
     BestSellingWidget: typeof import('./src/components/dashboard/BestSellingWidget.vue')['default']
+    DevicesForm: typeof import('./src/components/form/DevicesForm.vue')['default']
     DoughnutChart: typeof import('./src/components/dashboard/DoughnutChart.vue')['default']
     FeaturesWidget: typeof import('./src/components/landing/FeaturesWidget.vue')['default']
     FloatingConfigurator: typeof import('./src/components/FloatingConfigurator.vue')['default']
@@ -27,7 +28,6 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     SearchingBar: typeof import('./src/components/dashboard/SearchingBar.vue')['default']
     SelectButton: typeof import('primevue/selectbutton')['default']
-    Session: typeof import('./src/components/form/SessionForm.vue')['default']
     SessionForm: typeof import('./src/components/form/SessionForm.vue')['default']
     StatsWidget: typeof import('./src/components/dashboard/StatsWidget.vue')['default']
     Toast: typeof import('primevue/toast')['default']
